@@ -1,5 +1,5 @@
 public class Customer {
-	int id;
+	String id;
 	String email;
 	String password;
 	String name;
@@ -7,7 +7,8 @@ public class Customer {
 	int age;
 	String address;
 	
-	Customer (int id,
+	Customer (
+			String id,
 			String email,
 			String password,
 			String name,
@@ -39,6 +40,17 @@ public class Customer {
 		this.age = age;
 		this.address = address;
 		
+	}
+	
+	public int hashCode() {return (email+password+name+nickname+age+address).hashCode();}
+	public boolean equals(Object obj) {
+		if(obj instanceof Customer) {
+			Customer cust = (Customer) obj;
+			return email.equals(cust.email) && password.equals(cust.password) && name.equals(cust.name)&&
+					nickname.equals(cust.nickname) && age == cust.age && address.equals(cust.address);
+		}else {
+			return false;
+		}
 	}
 	
 	public void getinfo() {
