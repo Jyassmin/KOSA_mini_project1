@@ -10,7 +10,7 @@ public class Main {
         System.out.println("2. ");
         System.out.println("3. ");
 
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in); // 삭제 얘정
         int input = sc.nextInt();
 
         switch(input) {
@@ -25,7 +25,7 @@ public class Main {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException { // Main methods
         CustomerManager cm = new CustomerManager(); // customers(ArrayList생성). 작업은 메소드로!
         boolean flag = true;
 
