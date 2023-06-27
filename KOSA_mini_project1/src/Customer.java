@@ -1,6 +1,5 @@
-
 public class Customer {
-	String id;
+	int id;
 	String email;
 	String password;
 	String name;
@@ -8,7 +7,7 @@ public class Customer {
 	int age;
 	String address;
 	
-	Customer (String id,
+	Customer (int id,
 			String email,
 			String password,
 			String name,
@@ -42,9 +41,10 @@ public class Customer {
 		
 	}
 	
-	
-	
-	
-	
-	
+	public void getinfo() {
+		System.out.printf("%s %s %s %s %s %d %s", this.id, this.email, this.password, this.name, this.nickname, this.age, this.address);
+	}
 }
+
+
+
