@@ -1,10 +1,4 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -18,7 +12,7 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 		customers = new ArrayList<Customer>();
 		customersHash = new HashMap<String, Customer>();
 		
-		String path = "/Users/kyle/Repository/KOSA_mini_project1/KOSA_mini_project1/data/customer.csv";
+		String path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/customer.csv";
 		File file = new File(path);
 		if(file.exists()) {
 		    BufferedReader inFile = new BufferedReader(new FileReader(file));
@@ -119,7 +113,7 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 	}
 	
 	public void saveToFile() {
-		String path = "/Users/kyle/Repository/KOSA_mini_project1/KOSA_mini_project1/data/customer.csv";
+		String path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/customer.csv";
 		File file = new File(path);
 		BufferedWriter writer = null;
 	    try {
