@@ -22,7 +22,7 @@ public class Menu {
         System.out.println("-------------------------");
         System.out.println("1. 제품 번호");
         System.out.println("2. 브랜드");
-        System.out.println("2. 제품명");
+        System.out.println("3. 제품명");
         System.out.println("0. 이전 메뉴로");
         System.out.println("-------------------------");
     }
@@ -42,6 +42,7 @@ public class Menu {
         System.out.println("1. 등록");
         System.out.println("2. 수정");
         System.out.println("3. 삭제");
+        System.out.println("4. 모든 제품 확인");
         System.out.println("0. 이전 메뉴로");
         System.out.println("-------------------------");
     }

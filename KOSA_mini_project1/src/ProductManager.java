@@ -71,15 +71,13 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 		Product p = new Product(newId, name, brand, size, color, stock, cost);
 		addToList(p);
 	}
-	
 	public void show() { // 현재 모든 data 출력(모든제품show)
-		System.out.println("id   name   brand   size   color   stock   cost");
-		for (Product e : products)
-			System.out.printf("%s %s %s %d %s %d %d\n", e.getId(), e.getName(), e.getBrand(), e.getSize(), e.getColor(), e.getStock(), e.getCost());
-	}
-	
-	public void delete(int index) { // id를 받아 삭제
-		products.remove(index-1); // id가 1부터 시작해서 1 빼줌
+		System.out.printf("%-5s %-20s %-20s %-9s %-20s %-4s %-30s\n",
+				"id", "name", "brand", "size", "color", "stock", "cost");
+		for (Product e : products) {
+			System.out.printf("%-5s %-20s %-20s %-9s %-20s %-4s %-30s\n",
+					e.getId(), e.getName(), e.getBrand(), e.getSize(), e.getColor(), e.getStock(), e.getCost());
+		}
 	}
 	
 	public void edit() { // 수정
@@ -161,8 +159,62 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 			Product p = productsHash.get(id);
 			products.remove(p);
 			productsHash.remove(id);
-
 		}
+	}
+
+	public void showProductById() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("검색할 제품의 번호를 입력해주세요: ");
+		int id = Integer.parseInt(sc.nextLine());
+
+		Product p = productsHash.get(id);
+		if(p == null) {
+			System.out.println("* 입력하신 제품이 존재하지 않습니다.\n");
+			return;
+		}
+
+		System.out.printf("%-5s %-20s %-20s %-9s %-20s %-4s %-30s\n",
+				"id", "name", "brand", "size", "color", "stock", "cost");
+		System.out.printf("%-5s %-20s %-20s %-9s %-20s %-4s %-30s\n",
+				p.getId(), p.getName(), p.getBrand(), p.getSize(), p.getColor(), p.getStock(), p.getCost());
+	}
+
+	public void showBrand() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("검색할 브랜드명을 입력해주세요: ");
+		String brand = sc.nextLine();
+
+		System.out.printf("%-5s %-20s %-20s %-9s %-20s %-4s %-30s\n",
+				"id", "name", "brand", "size", "color", "stock", "cost");
+		boolean flag = false;
+		for (Product e : products) {
+			if (brand.equals(e.getBrand())) {
+				System.out.printf("%-5s %-20s %-20s %-9s %-20s %-4s %-30s\n",
+				e.getId(), e.getName(), e.getBrand(), e.getSize(), e.getColor(), e.getStock(), e.getCost());
+				flag = true;
+			}
+		}
+		if (!flag)
+			System.out.println("* 검색한 브랜드 제품이 존재하지 않습니다.");
+	}
+
+	public void showProductName() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("검색할 제품명을 입력해주세요: ");
+		String name = sc.nextLine();
+
+		System.out.printf("%-5s %-20s %-20s %-9s %-20s %-4s %-30s\n",
+				"id", "name", "brand", "size", "color", "stock", "cost");
+		boolean flag = false;
+		for (Product e : products) {
+			if (name.equals(e.getName())) {
+				System.out.printf("%-5s %-20s %-20s %-9s %-20s %-4s %-30s\n",
+				e.getId(), e.getName(), e.getBrand(), e.getSize(), e.getColor(), e.getStock(), e.getCost());
+				flag = true;
+			}
+		}
+		if (!flag)
+			System.out.println("* 검색한 제품명이 존재하지 않습니다.");
 	}
 
 }

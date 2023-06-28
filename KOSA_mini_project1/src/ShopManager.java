@@ -75,15 +75,15 @@ public class ShopManager{
             input = sc.nextInt();
 
             switch (input) {
-                case 1:
+                case 1 ->
                     // 제품번호
-                    break;
-                case 2:
+                    productManager.showProductById();
+                case 2 ->
                     // 브랜드
-                    break;
-                case 3:
+                    productManager.showBrand();
+                case 3 ->
                     // 제품명
-                    break;
+                    productManager.showProductName();
             }
         } while (input != 0);
     }
