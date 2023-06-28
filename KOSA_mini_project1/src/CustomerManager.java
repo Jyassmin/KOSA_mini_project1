@@ -81,10 +81,6 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 		}
 	}
 	
-	public void delete(String index) { // id를 받아 삭제 
-		customers.remove(Integer.parseInt(index)-1); // id가 1부터 시작해서 1 빼줌 
-	}
-	
 	public void edit() { // 수정
 		Scanner sc = new Scanner(System.in);
 		System.out.print("수정할 고객의 ID를 입력해주세요: ");
