@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 // hash 처리 해야줘야함
 public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성하고, methods로 조작.(so, static으로)
-	private static String Customer_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
+	private static final String Product_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
 	private static ArrayList<Product> products;
 	private static HashMap<Integer, Product> productsHash;
 
@@ -13,7 +13,7 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 		products = new ArrayList<Product>();
 		productsHash = new HashMap<Integer, Product>();
 
-		File file = new File(Customer_CSV_Path);
+		File file = new File(Product_CSV_Path);
 		if(file.exists()) {
 		    BufferedReader inFile = new BufferedReader(new FileReader(file));
 		    String sLine = null;
@@ -86,8 +86,15 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 	
 	public void edit() { // 수정
 		Scanner sc = new Scanner(System.in);
-		System.out.print("수정할 고객의 ID를 입력해주세요: ");
+		System.out.print("수정할 제품의 ID를 입력해주세요: ");
 		int id = Integer.parseInt(sc.nextLine());
+
+		Product p1 = productsHash.get(id);
+		int idx = products.indexOf(p1);
+		if(idx == -1) {
+			System.out.println("* 입력하신 제품이 존재하지 않습니다.\n");
+			return;
+		}
 		
 		System.out.println("아래에 수정될 내용을 적어주세요: ");
 		
@@ -111,14 +118,12 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 		
 		Product p = new Product(id, name, brand, size, color, stock, cost);
 
-		Product p1 = productsHash.get(id);
-		int idx = products.indexOf(p1);
 		products.set(idx, p); // products ArrayList에 수정
 		productsHash.put(id, p);	// products HashMap에 수정
 	}
 	
 	public void saveToFile() {
-		File file = new File(Customer_CSV_Path);
+		File file = new File(Product_CSV_Path);
 		BufferedWriter writer = null;
 	    try {
 	    	if (file.createNewFile()) {
@@ -126,7 +131,7 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 			} else {
 				System.out.println("File already exists.");
 			}
-	    	writer = new BufferedWriter(new FileWriter(Customer_CSV_Path, false));
+	    	writer = new BufferedWriter(new FileWriter(Product_CSV_Path, false));
 	    	
 			for(Product item : products) {
 				String str;

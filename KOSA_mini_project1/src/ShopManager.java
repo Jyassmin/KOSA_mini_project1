@@ -14,6 +14,11 @@ public class ShopManager{
         displayMenu();
     }
 
+    private void saveDataToFile(){
+        customerManager.saveToFile();
+        productManager.saveToFile();
+    }
+
     public void displayMenu() throws IOException{
         boolean flag = true;
         Scanner sc = new Scanner(System.in);
@@ -29,19 +34,17 @@ public class ShopManager{
             // Get input
             int input = sc.nextInt();
 
-            switch(input) {
-                case 0:
-                    customerManager.saveToFile();
-                    productManager.saveToFile();
+            switch (input) {
+                case 0 -> {
+                    saveDataToFile();
                     flag = false;
-                    break;
+                }
                 // 쇼핑몰
-                case 1:
+                case 1 -> {
                     // Display "Shopping" menu
                     menu.displayShoppingMenu();
                     input = sc.nextInt();
-
-                    switch (input){
+                    switch (input) {
                         case 0:
                             // back to Main menu
                             break;
@@ -53,8 +56,8 @@ public class ShopManager{
                             // 검색
                             menu.displaySearchMenu();
                             input = sc.nextInt();
-                            
-                            switch (input){
+
+                            switch (input) {
                                 case 0:
                                     // 이전 메뉴로
                                     backToPreviousMenu = true;
@@ -69,24 +72,23 @@ public class ShopManager{
                                     // 제품명
                                     break;
                             }
-                            if(!backToPreviousMenu)
+                            if (!backToPreviousMenu)
                                 break;
                     }
-                    break;
+                }
                 // 고객 관리
-                case 2:
+                case 2 -> {
                     // Display "Customer" menu
                     /*
                         1. 등록
                         2. 수정
                         3. 탈퇴
                         4. 모든 회원 확인
-                        0. 이전 메뉴로       
+                        0. 이전 메뉴로
                      */
                     menu.displayCustomerMenu();
                     input = sc.nextInt();
-
-                    switch(input) {
+                    switch (input) {
                         case 0:
                             break;
                         case 1:
@@ -102,14 +104,12 @@ public class ShopManager{
                             customerManager.show();
                             break;
                     }
-
-                    break;
+                }
                 // 제품 관리
-                case 3:
+                case 3 -> {
                     menu.displayProductMenu();
                     input = sc.nextInt();
-
-                    switch(input) {
+                    switch (input) {
                         case 0:
                             break;
                         case 1:
@@ -125,7 +125,7 @@ public class ShopManager{
                             productManager.show();
                             break;
                     }
-                    break;
+                }
             }
         }
     }
