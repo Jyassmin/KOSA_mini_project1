@@ -4,11 +4,12 @@ import java.util.Scanner;
 public class ShopManager{
     private final Menu menu;
     private final CustomerManager customerManager;
+    private final ProductManager productManager;
 
     ShopManager() throws IOException {
         menu = new Menu();
         customerManager = new CustomerManager();
-        ProductManager productManager = new ProductManager();
+        productManager = new ProductManager();
 
         displayMenu();
     }
@@ -31,6 +32,7 @@ public class ShopManager{
             switch(input) {
                 case 0:
                     customerManager.saveToFile();
+                    productManager.saveToFile();
                     flag = false;
                     break;
                 // 쇼핑몰
@@ -111,10 +113,13 @@ public class ShopManager{
                         case 0:
                             break;
                         case 1:
+                            productManager.add();
                             break;
                         case 2:
+                            productManager.edit();
                             break;
                         case 3:
+                            productManager.remove();
                             break;
                     }
                     break;
