@@ -41,7 +41,8 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 	
 	private void addToList(Product p) {
 		products.add(p);
-		productsHash.put(Integer.valueOf(p.getId()), p);
+        // ********나중에 uncomment!!!!!!!!!!!!!
+		// productsHash.put(Integer.valueOf(p.getId()), p);
 
 	}
 	
