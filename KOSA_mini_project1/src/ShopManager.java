@@ -64,12 +64,15 @@ public class ShopManager{
                                     break;
                                 case 1:
                                     // 제품번호
+                                    productManager.showProduct();
                                     break;
                                 case 2:
                                     // 브랜드
+                                    productManager.showBrand();
                                     break;
                                 case 3:
                                     // 제품명
+                                    productManager.showProductName();
                                     break;
                             }
                             if (!backToPreviousMenu)
