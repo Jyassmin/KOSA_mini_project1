@@ -1,15 +1,15 @@
 
 public class Product {
-	String id;
+	int id;
 	String name;
 	String brand;
 	int size;
 	String color;
 	int stock;
 	long cost;
+
 	
-	
-	Product (String id,
+	Product (int id,
 			String name,
 			String brand,
 			int size,
