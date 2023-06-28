@@ -67,7 +67,7 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 		System.out.print("가격: ");
 		long cost = Long.parseLong(sc.nextLine());
 		
-		int newId = products.get(products.size()-1).id + 1;
+		int newId = products.get(products.size()-1).getId() + 1;
 		
 		Product p = new Product(newId, name, brand, size, color, stock, cost);
 		addToList(p);
@@ -76,7 +76,7 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 	public void show() { // 현재 모든 data 출력(모든제품show)
 		System.out.println("id   name   brand   size   color   stock   cost");
 		for (Product e : products)
-			System.out.printf("%s %s %s %d %s %d %d\n", e.id, e.name, e.brand, e.size, e.color, e.stock, e.cost);
+			System.out.printf("%s %s %s %d %s %d %d\n", e.getId(), e.getName(), e.getBrand(), e.getSize(), e.getColor(), e.getStock(), e.getCost());
 	}
 	
 	public void delete(int index) { // id를 받아 삭제
@@ -109,7 +109,12 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 		int cost = Integer.parseInt(sc.nextLine());
 		
 		Product p = new Product(id, name, brand, size, color, stock, cost);
-		
+
+		Product p1 = productsHash.get(id);
+		int idx = products.indexOf(p1);
+		products.set(idx, p); // products ArrayList에 수정
+		productsHash.put(id, p);	// products HashMap에 수정
+
 		// 수정 products.set(id-1, p); // id가 1부터 시작해서 1 빼줌
 		productsHash.put(id, p);
 	}
@@ -127,7 +132,13 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 	    	
 			for(Product item : products) {
 				String str;
-				str = item.id + "," + item.name + "," + item.brand + "," + String.valueOf(item.size) + "," + item.color + "," + String.valueOf(item.stock) + "," + String.valueOf(item.cost) + "\n";
+				str = item.getId() + "," +
+						item.getName() + "," +
+						item.getBrand() + "," +
+						item.getSize() + "," +
+						item.getColor() + "," +
+						item.getStock() + "," +
+						item.getCost() + "\n";
 				writer.append(str);
 			}
 		    writer.close();			
@@ -139,16 +150,17 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 
 	public void remove() {
 		Scanner sc = new Scanner(System.in);
-		System.out.print("삭제할 고객의 ID를 입력해주세요: ");
-		String id = sc.nextLine();
+		System.out.print("삭제할 제품의 ID를 입력해주세요: ");
+		int id = Integer.parseInt(sc.nextLine());
 		
 		System.out.println("정말 삭제하시겠습니까? 맞다면 y, 아니라면 n를 입력해주세요");
 		String input = sc.nextLine();
-		if (input.equals("y")) {
+
+		if (input.equals("y")) { // String 비교에서는 equals!
 			Product p = productsHash.get(id);
-			int idx = products.indexOf(p);
-			products.remove(idx);
+			products.remove(p);
 			productsHash.remove(id);
+
 		}
 	}
 
