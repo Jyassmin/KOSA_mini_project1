@@ -1,6 +1,15 @@
 public class Menu {
     Menu(){}
 
+    public void loginOrRegisterMenu(){
+        System.out.println("-------------------------");
+        System.out.println("[Login or Register]");
+        System.out.println("1. 로그인");
+        System.out.println("2. 회원가입");
+        System.out.println("0. 종료");
+        System.out.println("-------------------------");
+    }
+
     public void displayMainMenu(){
         System.out.println("-------------------------");
         System.out.println("[MAIN MENU]");

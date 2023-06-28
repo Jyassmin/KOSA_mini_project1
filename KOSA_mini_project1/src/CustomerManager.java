@@ -45,6 +45,14 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 		customers.add(c);
 		customersHash.put(c.getId(), c);
 	}
+
+	public boolean login(){
+		return false;
+	}
+
+	public boolean register(){
+		return false;
+	}
 	
 	public void add() throws IOException{ // 한 줄씩 등록
 		Scanner sc = new Scanner(System.in);
@@ -74,11 +82,11 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 	}
 	
 	public void show() { // 현재 모든 data 출력(모든제품show)
-		System.out.printf("%-5s %-20s %-20s %-9s %-20s %-4s %-30s\n",
-				"id", "email", "password", "name", "nickname", "age", "address");
+		System.out.printf("%-5s %-20s %-9s %-20s %-4s %-30s\n",
+				"id", "email", "name", "nickname", "age", "address");
 		for (Customer e : customers) {
-			System.out.printf("%-5s %-20s %-20s %-9s %-20s %-4s %-30s\n",
-					e.getId(), e.getEmail(), e.getPassword(), e.getName(), e.getNickname(), String.valueOf(e.getAge()), e.getAddress());
+			System.out.printf("%-5s %-20s %-9s %-20s %-4s %-30s\n",
+					e.getId(), e.getEmail(), e.getName(), e.getNickname(), String.valueOf(e.getAge()), e.getAddress());
 		}
 	}
 	
