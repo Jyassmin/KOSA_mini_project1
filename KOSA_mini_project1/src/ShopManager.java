@@ -19,111 +19,123 @@ public class ShopManager{
         productManager.saveToFile();
     }
 
-    public void displayMenu() throws IOException{
-        boolean flag = true;
+    private void displayMenu() throws IOException {
         Scanner sc = new Scanner(System.in);
-        while(flag) {
+        int input;
+
+        do {
             // Display main menu
             /*
-                1. 쇼핑몰
-                2. 고객 관리
-                3. 제품 관리
-                0. 종료
+               1. 쇼핑몰
+               2. 고객 관리
+               3. 제품 관리
+               0. 종료
              */
             menu.displayMainMenu();
-            // Get input
-            int input = sc.nextInt();
+            input = sc.nextInt();
 
             switch (input) {
-                case 0 -> {
-                    saveDataToFile();
-                    flag = false;
-                }
-                // 쇼핑몰
-                case 1 -> {
-                    // Display "Shopping" menu
-                    menu.displayShoppingMenu();
-                    input = sc.nextInt();
-                    switch (input) {
-                        case 0:
-                            // back to Main menu
-                            break;
-                        case 1:
-                            // 전체 제품
-                            break;
-                        case 2:
-                            boolean backToPreviousMenu = false;
-                            // 검색
-                            menu.displaySearchMenu();
-                            input = sc.nextInt();
-
-                            switch (input) {
-                                case 0:
-                                    // 이전 메뉴로
-                                    backToPreviousMenu = true;
-                                    break;
-                                case 1:
-                                    // 제품번호
-                                    break;
-                                case 2:
-                                    // 브랜드
-                                    break;
-                                case 3:
-                                    // 제품명
-                                    break;
-                            }
-                            if (!backToPreviousMenu)
-                                break;
-                    }
-                }
-                // 고객 관리
-                case 2 -> {
-                    // Display "Customer" menu
-                    /*
-                        1. 등록
-                        2. 수정
-                        3. 탈퇴
-                        4. 모든 회원 확인
-                        0. 이전 메뉴로
-                     */
-                    menu.displayCustomerMenu();
-                    input = sc.nextInt();
-                    switch (input) {
-                        case 0:
-                            break;
-                        case 1:
-                            customerManager.add();
-                            break;
-                        case 2:
-                            customerManager.edit();
-                            break;
-                        case 3:
-                            customerManager.remove();
-                            break;
-                        case 4:
-                            customerManager.show();
-                            break;
-                    }
-                }
-                // 제품 관리
-                case 3 -> {
-                    menu.displayProductMenu();
-                    input = sc.nextInt();
-                    switch (input) {
-                        case 0:
-                            break;
-                        case 1:
-                            productManager.add();
-                            break;
-                        case 2:
-                            productManager.edit();
-                            break;
-                        case 3:
-                            productManager.remove();
-                            break;
-                    }
-                }
+                case 0 -> saveDataToFile();
+                case 1 -> handleShoppingMenu();
+                case 2 -> handleCustomerMenu();
+                case 3 -> handleProductMenu();
             }
-        }
+        } while (input != 0);
     }
+
+    private void handleShoppingMenu() {
+        Scanner sc = new Scanner(System.in);
+        int input;
+
+        do {
+            // Display "Shopping" menu
+            menu.displayShoppingMenu();
+            input = sc.nextInt();
+
+            switch (input) {
+                case 1 -> productManager.show();
+                case 2 -> handleSearchMenu();
+            }
+        } while (input != 0);
+    }
+
+    private void handleSearchMenu() {
+        Scanner sc = new Scanner(System.in);
+        int input;
+
+        do {
+            // Display "Search" menu
+            /*
+                1. 제품번호
+                2. 브랜드
+                3. 제품명=
+                0. 이전 메뉴로
+             */
+            menu.displaySearchMenu();
+            input = sc.nextInt();
+
+            switch (input) {
+                case 1:
+                    // 제품번호
+                    break;
+                case 2:
+                    // 브랜드
+                    break;
+                case 3:
+                    // 제품명
+                    break;
+            }
+        } while (input != 0);
+    }
+
+    private void handleCustomerMenu() throws IOException {
+        Scanner sc = new Scanner(System.in);
+        int input;
+
+        do {
+            // Display "Customer" menu
+            /*
+                1. 등록
+                2. 수정
+                3. 탈퇴
+                4. 모든 회원 확인
+                0. 이전 메뉴로
+             */
+            menu.displayCustomerMenu();
+            input = sc.nextInt();
+
+            switch (input) {
+                case 1 -> customerManager.add();
+                case 2 -> customerManager.edit();
+                case 3 -> customerManager.remove();
+                case 4 -> customerManager.show();
+            }
+        } while (input != 0);
+    }
+
+    private void handleProductMenu() throws IOException {
+        Scanner sc = new Scanner(System.in);
+        int input;
+
+        do {
+            // Display "Product" menu
+            /*
+                1. 등록
+                2. 수정
+                3. 삭제
+                4. 모든 제품 확인
+                0. 이전 메뉴로
+             */
+            menu.displayProductMenu();
+            input = sc.nextInt();
+
+            switch (input) {
+                case 1 -> productManager.add();
+                case 2 -> productManager.edit();
+                case 3 -> productManager.remove();
+            }
+        } while (input != 0);
+    }
+
+
 }
