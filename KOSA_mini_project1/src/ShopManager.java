@@ -2,14 +2,13 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class ShopManager{
-    private Menu menu;
-    private CustomerManager customerManager;
-    private ProductManager productManager;
+    private final Menu menu;
+    private final CustomerManager customerManager;
 
     ShopManager() throws IOException {
         menu = new Menu();
         customerManager = new CustomerManager();
-        productManager = new ProductManager();
+        ProductManager productManager = new ProductManager();
 
         displayMenu();
     }
@@ -105,6 +104,19 @@ public class ShopManager{
                     break;
                 // 제품 관리
                 case 3:
+                    menu.displayProductMenu();
+                    input = sc.nextInt();
+
+                    switch(input) {
+                        case 0:
+                            break;
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                    }
                     break;
             }
         }

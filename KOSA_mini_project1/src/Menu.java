@@ -36,4 +36,13 @@ public class Menu {
         System.out.println("0. 이전 메뉴로");
         System.out.println("-------------------------");
     }
+
+    public void displayProductMenu(){
+        System.out.println("-------------------------");
+        System.out.println("1. 등록");
+        System.out.println("2. 수정");
+        System.out.println("3. 삭제");
+        System.out.println("0. 이전 메뉴로");
+        System.out.println("-------------------------");
+    }
 }
