@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-// hash 처리 해야줘야함
-public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성하고, methods로 조작.(so, static으로)
+
+public class ProductManager {
 	private static final String Product_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
 	private static ArrayList<Product> products;
 	private static HashMap<Integer, Product> productsHash;

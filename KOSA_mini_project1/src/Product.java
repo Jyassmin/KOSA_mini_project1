@@ -1,5 +1,5 @@
 
-public class Product {
+public class Product { // Customer.csv에서 하나의 행을 받아 객체로 생성(고객정보 단위)
 	private int id;
 	private String name;
 	private String brand;
