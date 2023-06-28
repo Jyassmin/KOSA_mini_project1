@@ -121,6 +121,9 @@ public class ShopManager{
                         case 3:
                             productManager.remove();
                             break;
+                        case 4:
+                            productManager.show();
+                            break;
                     }
                     break;
             }

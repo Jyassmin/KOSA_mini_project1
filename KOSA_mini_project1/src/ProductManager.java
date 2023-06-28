@@ -71,13 +71,15 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 		Product p = new Product(newId, name, brand, size, color, stock, cost);
 		addToList(p);
 	}
-	
 	public void show() { // 현재 모든 data 출력(모든제품show)
-		System.out.println("id   name   brand   size   color   stock   cost");
-		for (Product e : products)
-			System.out.printf("%s %s %s %d %s %d %d\n", e.getId(), e.getName(), e.getBrand(), e.getSize(), e.getColor(), e.getStock(), e.getCost());
+		System.out.printf("%-5s %-20s %-20s %-9s %-20s %-4s %-30s\n",
+				"id", "name", "brand", "size", "color", "stock", "cost");
+		for (Product e : products) {
+			System.out.printf("%-5s %-20s %-20s %-9s %-20s %-4s %-30s\n",
+					e.getId(), e.getName(), e.getBrand(), e.getSize(), e.getColor(), e.getStock(), e.getCost());
+		}
 	}
-	
+
 	public void delete(int index) { // id를 받아 삭제
 		products.remove(index-1); // id가 1부터 시작해서 1 빼줌
 	}
