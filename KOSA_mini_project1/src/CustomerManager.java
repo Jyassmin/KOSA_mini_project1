@@ -42,7 +42,7 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 	
 	private void addToList(Customer c) {
 		customers.add(c);
-		customersHash.put(Integer.valueOf(c.getId()), c);
+		customersHash.put(c.getId(), c);
 	}
 	
 	public void add() throws IOException{ // 한 줄씩 등록
@@ -85,6 +85,13 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 		Scanner sc = new Scanner(System.in);
 		System.out.print("수정할 고객의 ID를 입력해주세요: ");
 		int id = Integer.parseInt(sc.nextLine()); //br.readLine();
+
+		Customer c1 = customersHash.get(id);
+		int idx = customers.indexOf(c1);
+		if(idx == -1) {
+			System.out.println("* 입력하신 고객이 존재하지 않습니다.\n");
+			return;
+		}
 		
 		System.out.println("아래에 수정될 내용을 적어주세요: ");
 		
@@ -108,10 +115,9 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 		
 		Customer c = new Customer(id, email, password, name, nickname, age, address);
 
-		Customer c1 = customersHash.get(id);
-		int idx = customers.indexOf(c1);
 		customers.set(idx, c); // customers ArrayList에 수정
 		customersHash.put(id, c);	// customers HashMap에 수정
+
 	}
 	
 	public void saveToFile() {
