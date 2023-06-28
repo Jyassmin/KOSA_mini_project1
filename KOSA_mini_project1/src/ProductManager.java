@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 // hash 처리 해야줘야함
 public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성하고, methods로 조작.(so, static으로)
+	private static String Customer_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
 	private static ArrayList<Product> products;
 	private static HashMap<Integer, Product> productsHash;
 
@@ -12,9 +13,7 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 		products = new ArrayList<Product>();
 		productsHash = new HashMap<Integer, Product>();
 
-
-		String path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
-		File file = new File(path);
+		File file = new File(Customer_CSV_Path);
 		if(file.exists()) {
 		    BufferedReader inFile = new BufferedReader(new FileReader(file));
 		    String sLine = null;
@@ -42,7 +41,8 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 	
 	private void addToList(Product p) {
 		products.add(p);
-		productsHash.put(p.id, p);
+		productsHash.put(Integer.valueOf(p.getId()), p);
+
 	}
 	
 	public void add() throws IOException{ // 한 줄씩 등록
@@ -114,8 +114,7 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 	}
 	
 	public void saveToFile() {
-		String path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
-		File file = new File(path);
+		File file = new File(Customer_CSV_Path);
 		BufferedWriter writer = null;
 	    try {
 	    	if (file.createNewFile()) {
@@ -123,7 +122,7 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 			} else {
 				System.out.println("File already exists.");
 			}
-	    	writer = new BufferedWriter(new FileWriter(path, false));
+	    	writer = new BufferedWriter(new FileWriter(Customer_CSV_Path, false));
 	    	
 			for(Product item : products) {
 				String str;
