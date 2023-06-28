@@ -33,8 +33,6 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 		        catch (NumberFormatException ex){
 		            ex.printStackTrace();
 		        }
-		    	
-			    // System.out.println(sLine); //읽어들인 문자열을 출력 합니다.
 		    }
 		    inFile.close();
 		}
@@ -124,8 +122,6 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 	    try {
 	    	if (file.createNewFile()) {
 				System.out.println("File created: " + file.getName());
-			} else {
-				System.out.println("File already exists.");
 			}
 	    	writer = new BufferedWriter(new FileWriter(Product_CSV_Path, false));
 	    	
