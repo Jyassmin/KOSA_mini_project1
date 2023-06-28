@@ -20,8 +20,9 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 		    while( (sLine = inFile.readLine()) != null ) {
 				String[] temp_arr = sLine.split(","); 
 		        try{
+					int tempId = Integer.parseInt(temp_arr[0].replaceAll("\\D", ""));
 		        	addToList(new Product(
-		        			Integer.parseInt(temp_arr[0].trim()),
+		        			tempId,
 		        			temp_arr[1].trim(),
 		            		temp_arr[2].trim(),
 		            		Integer.parseInt(temp_arr[3].trim()),
@@ -41,9 +42,7 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 	
 	private void addToList(Product p) {
 		products.add(p);
-        // ********나중에 uncomment!!!!!!!!!!!!!
-		// productsHash.put(Integer.valueOf(p.getId()), p);
-
+		productsHash.put(p.getId(), p);
 	}
 	
 	public void add() throws IOException{ // 한 줄씩 등록
@@ -114,9 +113,6 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 		int idx = products.indexOf(p1);
 		products.set(idx, p); // products ArrayList에 수정
 		productsHash.put(id, p);	// products HashMap에 수정
-
-		// 수정 products.set(id-1, p); // id가 1부터 시작해서 1 빼줌
-		productsHash.put(id, p);
 	}
 	
 	public void saveToFile() {
