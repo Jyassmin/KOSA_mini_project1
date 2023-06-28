@@ -9,6 +9,7 @@ public class Customer {
 	private String nickname;
 	private int age;
 	private String address;
+	private boolean isSuperUser;
 	// endregion
 
 	// region constructors

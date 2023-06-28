@@ -7,16 +7,48 @@ public class ShopManager{
     private final ProductManager productManager;
 
     ShopManager() throws IOException {
+        // initialize class members
         menu = new Menu();
         customerManager = new CustomerManager();
         productManager = new ProductManager();
-
+        loginOrRegister();
         displayMenu();
     }
 
     private void saveDataToFile(){
+        // saving data to files
         customerManager.saveToFile();
         productManager.saveToFile();
+    }
+
+    private void loginOrRegister(){
+        menu.loginOrRegisterMenu();
+        Scanner sc = new Scanner(System.in);
+
+        boolean success = false;
+        int input = Integer.parseInt(sc.nextLine());
+        switch (input) {
+            // login
+            case 1 -> {
+                success = customerManager.login();
+                if (success)
+                    return;
+            }
+            // register
+            case 2 -> {
+                success = customerManager.register();
+                if (success)
+                    return;
+            }
+            case 0 ->{
+                System.exit(0);
+            }
+        }
+
+        if(!success)
+            loginOrRegister();
+
+        return;
     }
 
     private void displayMenu() throws IOException {
@@ -43,6 +75,10 @@ public class ShopManager{
         } while (input != 0);
     }
 
+    /*
+        Description: displays appropriate shopping menu and get input from user. Then do different types of actions
+                    depends on user input
+    */
     private void handleShoppingMenu() {
         Scanner sc = new Scanner(System.in);
         int input;
@@ -59,6 +95,10 @@ public class ShopManager{
         } while (input != 0);
     }
 
+    /*
+        Description: displays appropriate search menu and get input from user. Then do different types of actions
+                    depends on user input
+    */
     private void handleSearchMenu() {
         Scanner sc = new Scanner(System.in);
         int input;
