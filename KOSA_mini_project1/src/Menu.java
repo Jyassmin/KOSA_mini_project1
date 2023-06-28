@@ -3,6 +3,7 @@ public class Menu {
 
     public void displayMainMenu(){
         System.out.println("-------------------------");
+        System.out.println("[MAIN MENU]");
         System.out.println("1. 쇼핑몰");
         System.out.println("2. 고객 관리");
         System.out.println("3. 제품 관리");
@@ -12,6 +13,7 @@ public class Menu {
 
     public void displayShoppingMenu(){
         System.out.println("-------------------------");
+        System.out.println("[MAIN MENU] > [1. SHOPPING MENU]");
         System.out.println("1. 전체 제품");
         System.out.println("2. 검색");
         System.out.println("0. 이전 메뉴로");
@@ -20,6 +22,7 @@ public class Menu {
 
     public void displaySearchMenu(){
         System.out.println("-------------------------");
+        System.out.println("[MAIN MENU] > [1. SHOPPING MENU] > [2. SEARCH MENU]");
         System.out.println("1. 제품 번호");
         System.out.println("2. 브랜드");
         System.out.println("3. 제품명");
@@ -29,6 +32,7 @@ public class Menu {
 
     public void displayCustomerMenu(){
         System.out.println("-------------------------");
+        System.out.println("[MAIN MENU] > [1. CUSTOMER MENU]");
         System.out.println("1. 등록");
         System.out.println("2. 수정");
         System.out.println("3. 탈퇴");
@@ -39,6 +43,7 @@ public class Menu {
 
     public void displayProductMenu(){
         System.out.println("-------------------------");
+        System.out.println("[MAIN MENU] > [1. PRODUCT MENU]");
         System.out.println("1. 등록");
         System.out.println("2. 수정");
         System.out.println("3. 삭제");

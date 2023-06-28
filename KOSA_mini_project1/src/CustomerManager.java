@@ -6,9 +6,7 @@ import java.util.Scanner;
 
 public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생성하고, methods로 조작.(so, static으로)
 
-	private static String Customer_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/customer.csv";
-
-
+	private static final String Customer_CSV_Path = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\customer.csv";
 	private static ArrayList<Customer> customers;
 	private static HashMap<Integer, Customer> customersHash;
 	
@@ -129,8 +127,6 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 	    try {
 	    	if (file.createNewFile()) {
 				System.out.println("File created: " + file.getName());
-			} else {
-				System.out.println("File already exists.");
 			}
 	    	writer = new BufferedWriter(new FileWriter(Customer_CSV_Path, false));
 	    	
