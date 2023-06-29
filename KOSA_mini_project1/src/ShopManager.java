@@ -269,8 +269,11 @@ public class ShopManager{
             menu.displayOrderDecision();
             input = sc.nextInt();
 
-            if (input == 1)
-                productManager.orderProduct();
+            if (input == 1) {
+                Order o = productManager.orderProduct(orderManager.getLastOrderID(), currentCustomer.getId());
+                if (o != null)
+                    orderManager.addToList(o);
+            }
             else if (input != 0)
                 System.out.println("잘못된 입력입니다.");
 

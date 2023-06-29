@@ -1,12 +1,11 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
+import java.text.*;
 
 
 
 public class ProductManager {
-	private static final String Product_CSV_Path = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\product.csv";
+	private static final String Product_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
 	private static ArrayList<Product> products;
 	private static HashMap<Integer, Product> productsHash;
 	private final Scanner sc;
@@ -223,7 +222,7 @@ public class ProductManager {
 			System.out.println("* 검색한 제품명이 존재하지 않습니다.");
 	}
 
-	public void orderProduct() {
+	public Order orderProduct(int lastOrderId, int currentUid) {
 		System.out.print("구매할 제품의 번호를 입력해주세요: ");
 		int id = Integer.parseInt(sc.nextLine());
 
@@ -233,21 +232,34 @@ public class ProductManager {
 			System.out.println("* 구매하실 제품번호가 존재하지 않습니다.");
 
 		} else {
-			int idx = products.indexOf(p);
-			p.setStock(p.getStock() - 1);
+			System.out.print("수량을 입력해주세요: ");
+			int quantity = Integer.parseInt(sc.nextLine());
 
-			if (p.getStock() != 0) {
-				products.set(idx, p);
-				productsHash.put(id, p);
+			if (p.getStock() - quantity < 0)
+				System.out.println("* 재고가 충분하지 않습니다: ");
+			else {
+				int idx = products.indexOf(p);
+				p.setStock(p.getStock() - quantity);
 
-			} else {
-				// 만약 재고가 0이라면 해당제품 삭제
-				// why? 상품리스트에서 보이지 않도록 & 실제 비지니스에서 새로운 상품을 들여올 때 수량이 없던 기존제품을 늘려주는 것보다, 새로 등록하는 것이 더 편리.
-				products.remove(idx);
-				productsHash.remove(id);
+				if (p.getStock() != 0) {
+					products.set(idx, p);
+					productsHash.put(id, p);
+
+				} else {
+					// 만약 재고가 0이라면 해당제품 삭제
+					// why? 상품리스트에서 보이지 않도록 & 실제 비지니스에서 새로운 상품을 들여올 때 수량이 없던 기존제품을 늘려주는 것보다, 새로 등록하는 것이 더 편리.
+					products.remove(idx);
+					productsHash.remove(id);
+				}
+				DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+				Date date = new Date();
+
+				Order o = new Order(lastOrderId+1, currentUid, id, dateFormat.format(date), productsHash.get(id).getCost()*quantity, quantity);
+				System.out.println("* 구매완료.");
+				return o;
 			}
-			System.out.println("* 구매완료.");
 		}
+		return null;
 	}
 }
 
