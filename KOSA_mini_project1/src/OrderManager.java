@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -76,6 +73,32 @@ public class OrderManager { // main에서 한 번 실행시켜 ArrayList생성�
             System.out.printf("%-5s %-10s %-20s %-9s %-20s %-20s %-4s %-30s\n",
                     e.getId(), e.getUid(), cm.getCustomerName(e.getUid()), e.getPid(), pm.getProductName(e.getPid()),
                     e.getOrderDate(), e.getTotalAmount(), e.getQuantity());
+        }
+    }
+
+    public void saveToFile() {
+        File file = new File(Order_CSV_Path);
+        BufferedWriter writer = null;
+        try {
+            if (file.createNewFile()) {
+                System.out.println("File created: " + file.getName());
+            }
+            writer = new BufferedWriter(new FileWriter(Order_CSV_Path, false));
+
+            for(Order item : orders) {
+                String str;
+                str = item.getId() + "," +
+                        item.getUid() + "," +
+                        item.getPid() + "," +
+                        item.getOrderDate() + "," +
+                        item.getTotalAmount() + "," +
+                        item.getQuantity() + "\n";
+                writer.append(str);
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
     }
 }

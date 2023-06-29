@@ -125,6 +125,7 @@ public class ShopManager{
         // saving data to files
         customerManager.saveToFile();
         productManager.saveToFile();
+        orderManager.saveToFile();
     }
 
     /*
