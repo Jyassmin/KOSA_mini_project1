@@ -62,18 +62,18 @@ public class OrderManager { // main에서 한 번 실행시켜 ArrayList생성�
         int cid = Integer.parseInt(sc.nextLine());
         ArrayList<Order> customerOrders = orderHash.get(cid);
 
-        if(customerOrders != null)
-            show(customerOrders, cm, pm);
+        show(customerOrders, cm, pm);
     }
 
     public void show(ArrayList<Order> os, CustomerManager cm,  ProductManager pm) {
         System.out.printf("%-5s %-10s %-20s %-9s %-20s %-20s %-4s %-30s\n",
                 "id", "customer ID", "customer name", "product ID", "product name", "order date", "total amount", "quantity");
-        for (Order e : os) {
-            System.out.printf("%-5s %-10s %-20s %-9s %-20s %-20s %-4s %-30s\n",
-                    e.getId(), e.getUid(), cm.getCustomerName(e.getUid()), e.getPid(), pm.getProductName(e.getPid()),
-                    e.getOrderDate(), e.getTotalAmount(), e.getQuantity());
-        }
+        if(os != null)
+            for (Order e : os) {
+                System.out.printf("%-5s %-10s %-20s %-9s %-20s %-20s %-4s %-30s\n",
+                        e.getId(), e.getUid(), cm.getCustomerName(e.getUid()), e.getPid(), pm.getProductName(e.getPid()),
+                        e.getOrderDate(), e.getTotalAmount(), e.getQuantity());
+            }
     }
 
     public void saveToFile() {
