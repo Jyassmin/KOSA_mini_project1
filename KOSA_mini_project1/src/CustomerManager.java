@@ -13,7 +13,7 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 	private static ArrayList<Customer> customers;
 	private static HashMap<Integer, Customer> customersHash;
 	private final Scanner sc;
-	
+
 	CustomerManager() throws IOException {} {
 		customers = new ArrayList<Customer>();
 		customersHash = new HashMap<Integer, Customer>();
