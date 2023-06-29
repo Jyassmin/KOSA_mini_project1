@@ -6,7 +6,7 @@ public class ShopManager{
     private final CustomerManager customerManager;
     private final ProductManager productManager;
     private Customer currentCustomer;
-    private  Scanner sc;
+    private final Scanner sc;
 
     ShopManager() throws IOException {
         // initialize class members

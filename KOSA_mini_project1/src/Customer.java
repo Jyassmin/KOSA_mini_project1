@@ -53,6 +53,7 @@ public class Customer {
 	// endregion
 
 	// region getters
+	// TODO: 2023/06/29 getID
 	public int getId(){
 		return this.id;
 	}
