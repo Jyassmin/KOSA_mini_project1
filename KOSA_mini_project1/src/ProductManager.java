@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 
+
 public class ProductManager {
 	private static final String Product_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
 	private static ArrayList<Product> products;
@@ -69,16 +70,18 @@ public class ProductManager {
 		Product p = new Product(newId, name, brand, size, color, stock, cost);
 		addToList(p);
 	}
+
+	// TODO: 2023/06/29 display style
 	public void show() { // 현재 모든 data 출력(모든제품show)
-		System.out.println(("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
-		System.out.printf("| %-5s | %-15s %-15s %-10s %-15s %-15s %-20s |\n",
+		System.out.println(("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
+		System.out.printf("| %-4s|  %-12s %-10s %-5s %-10s %-5s %-15s |\n",
 				"id", "name", "brand", "size", "color", "stock", "cost");
-		System.out.println(("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
+		System.out.println(("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
 		for (Product e : products) {
-			System.out.printf("| %-5s | %-20s %-20s %-9s %-20s %-4s %-30s |\n",
+			System.out.printf("| %-4s|  %-12s %-10s %-5s %-10s %-5s %-15s |\n",
 					e.getId(), e.getName(), e.getBrand(), e.getSize(), e.getColor(), e.getStock(), e.getCost());
 		}
-		System.out.println(("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
+		System.out.println(("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
 	}
 	
 	public void edit() { // 수정
