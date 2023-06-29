@@ -60,4 +60,13 @@ public class Menu {
         System.out.println("0. 이전 메뉴로");
         System.out.println("-------------------------");
     }
+
+    public void displayOrderDecision() {
+        System.out.println("-------------------------");
+        System.out.println("* 구매를 원하시면 1번을 눌러주세요."); // 파라미터 받아서 출력 다르게 하기
+        System.out.println("1. 구매하기");
+        System.out.println("0. 이전 메뉴로");
+        System.out.println("-------------------------");
+    }
+
 }
