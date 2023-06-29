@@ -30,6 +30,25 @@ public class Customer {
 		this.age = age;
 		this.address = address;
 	}
+	Customer (
+			int id,
+			String email,
+			String password,
+			String name,
+			String nickname,
+			int age,
+			String address,
+			boolean isSuperUser) {
+
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.nickname = nickname;
+		this.age = age;
+		this.address = address;
+		this.isSuperUser = isSuperUser;
+	}
 	// endregion
 
 	// region getters
@@ -54,6 +73,7 @@ public class Customer {
 	public String getAddress(){
 		return this.address;
 	}
+	public boolean getIsSuperUser() {return this.isSuperUser;}
 	//endregion
 
 	// region setters
@@ -78,6 +98,9 @@ public class Customer {
 	public void setAddress(String address){
 		this.address = address;
 	}
+	public void setIsSuperUser(boolean isSuperUser){
+		this.isSuperUser = isSuperUser;
+	}
 	//endregion
 
 
@@ -96,7 +119,6 @@ public class Customer {
 		this.nickname = nickname;
 		this.age = age;
 		this.address = address;
-
 	}
 
 	public void getinfo() {
