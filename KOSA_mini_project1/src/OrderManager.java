@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class OrderManager { // main에서 한 번 실행시켜 ArrayList생성하고, methods로 조작.(so, static으로)
 
-    private static final String Order_CSV_Path = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\order.csv";
+    private static final String Order_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/order.csv";
     private static ArrayList<Order> orders;
     private static HashMap<Integer, ArrayList<Order>> orderHash;
     private final Scanner sc;
@@ -39,7 +39,7 @@ public class OrderManager { // main에서 한 번 실행시켜 ArrayList생성�
         }
     }
 
-    private void addToList(Order o) {
+    public void addToList(Order o) {
         orders.add(o);
 
         // adding to orders hashmap
@@ -101,4 +101,13 @@ public class OrderManager { // main에서 한 번 실행시켜 ArrayList생성�
             e.printStackTrace();
         }
     }
+
+    public int getLastOrderID() {
+        if(orders.size() > 0)
+            return orders.get(orders.size()-1).getId();
+        else
+            return 0;
+    }
+
+
 }

@@ -7,19 +7,18 @@ public class Order {
     private double totalAmount;
     private int quantity;
 
-
     Order (int id,
          int uid,
          int pid,
          String orderDate,
-         double cost,
+         double totalAmount,
          int quantity) {
 
         this.id = id;
         this.uid = uid;
         this.pid = pid;
         this.orderDate = orderDate;
-        this.totalAmount = cost;
+        this.totalAmount = totalAmount;
         this.quantity = quantity;
     }
     // endregion
