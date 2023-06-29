@@ -9,10 +9,12 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 	private static final String Customer_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/customer.csv";
 	private static ArrayList<Customer> customers;
 	private static HashMap<Integer, Customer> customersHash;
+	private  Scanner sc;
 	
 	CustomerManager() throws IOException {} { 
 		customers = new ArrayList<Customer>();
 		customersHash = new HashMap<Integer, Customer>();
+		sc = new Scanner(System.in);
 
 		File file = new File(Customer_CSV_Path);
 		if(file.exists()) {
@@ -63,7 +65,6 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 	}
 
 	public Customer login(){
-		Scanner sc = new Scanner(System.in);
 		System.out.print("닉네임: ");
 		String inputNickname = sc.nextLine();
 
@@ -74,7 +75,6 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 	}
 
 	public void register(){
-		Scanner sc = new Scanner(System.in);
 
 		System.out.print("이름: ");
 		String name = sc.nextLine();
@@ -115,8 +115,6 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 	}
 	
 	public void add() throws IOException{ // 한 줄씩 등록
-		Scanner sc = new Scanner(System.in);
-		
 		System.out.print("이름: ");
 		String name = sc.nextLine(); //br.readLine();
 		
@@ -157,8 +155,6 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 	}
 	
 	public void edit(Customer currentCustomer) { // 현재 사용자 정보 수정
-		Scanner sc = new Scanner(System.in);
-
 		if(currentCustomer != null){
 			int id = currentCustomer.getId();
 
@@ -217,7 +213,6 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 	}
 
 	public void remove() {
-		Scanner sc = new Scanner(System.in);
 		System.out.print("삭제할 고객의 ID를 입력해주세요: ");
 		int id = Integer.parseInt(sc.nextLine());
 
@@ -232,7 +227,6 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 	}
 
 	public void remove(int id){
-		Scanner sc = new Scanner(System.in);
 		System.out.print("정말 탈퇴하시겠습니까? 맞다면 y, 아니라면 n를 입력해주세요: ");
 		String input = sc.nextLine();
 

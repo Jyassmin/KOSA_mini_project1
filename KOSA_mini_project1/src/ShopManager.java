@@ -6,12 +6,14 @@ public class ShopManager{
     private final CustomerManager customerManager;
     private final ProductManager productManager;
     private Customer currentCustomer;
+    private  Scanner sc;
 
     ShopManager() throws IOException {
         // initialize class members
         menu = new Menu();
         customerManager = new CustomerManager();
         productManager = new ProductManager();
+		sc = new Scanner(System.in);
 
         startProgram();
         // save the data whenever user chooses to end the program
@@ -37,7 +39,6 @@ public class ShopManager{
         do
         {
             menu.loginOrRegisterMenu();
-            Scanner sc = new Scanner(System.in);
 
             int input = Integer.parseInt(sc.nextLine());
             switch (input) {
@@ -60,7 +61,6 @@ public class ShopManager{
 
     // region MAIN MENU
     private int displayManagerMenu() throws IOException {
-        Scanner sc = new Scanner(System.in);
         int input;
 
         // 관리자 메뉴
@@ -86,7 +86,6 @@ public class ShopManager{
     }
 
     private int displayCustomerMenu(){
-        Scanner sc = new Scanner(System.in);
         int input;
 
         // 사용자 메뉴
@@ -129,7 +128,6 @@ public class ShopManager{
                     depends on user input
     */
     private void handleShoppingMenu() {
-        Scanner sc = new Scanner(System.in);
         int input;
 
         do {
@@ -157,7 +155,6 @@ public class ShopManager{
                     depends on user input
     */
     private void handleSearchMenu() {
-        Scanner sc = new Scanner(System.in);
         int input;
 
         do {
@@ -189,7 +186,6 @@ public class ShopManager{
     }
 
     private void handleCustomerMenu() throws IOException {
-        Scanner sc = new Scanner(System.in);
         int input;
 
         do {
@@ -212,7 +208,6 @@ public class ShopManager{
     }
 
     private void handleProductMenu() throws IOException {
-        Scanner sc = new Scanner(System.in);
         int input;
 
         do {
@@ -237,7 +232,6 @@ public class ShopManager{
     }
 
     private void displayOrderDecision() {
-        Scanner sc = new Scanner(System.in);
         int input;
 
         do {

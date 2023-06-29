@@ -8,10 +8,12 @@ public class ProductManager {
 	private static final String Product_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
 	private static ArrayList<Product> products;
 	private static HashMap<Integer, Product> productsHash;
+	private  Scanner sc;
 
 	ProductManager() throws IOException {} {
 		products = new ArrayList<Product>();
 		productsHash = new HashMap<Integer, Product>();
+		sc = new Scanner(System.in);
 
 		File file = new File(Product_CSV_Path);
 		if(file.exists()) {
@@ -44,8 +46,6 @@ public class ProductManager {
 	}
 	
 	public void add() throws IOException{ // 한 줄씩 등록
-		Scanner sc = new Scanner(System.in);
-		
 		System.out.print("제품명: ");
 		String name = sc.nextLine();
 		
@@ -79,7 +79,6 @@ public class ProductManager {
 	}
 	
 	public void edit() { // 수정
-		Scanner sc = new Scanner(System.in);
 		System.out.print("수정할 제품의 ID를 입력해주세요: ");
 		int id = Integer.parseInt(sc.nextLine());
 
@@ -144,7 +143,6 @@ public class ProductManager {
 	}
 
 	public void remove() {
-		Scanner sc = new Scanner(System.in);
 		System.out.print("삭제할 제품의 ID를 입력해주세요: ");
 		int id = Integer.parseInt(sc.nextLine());
 		
@@ -159,7 +157,6 @@ public class ProductManager {
 	}
 
 	public void showProductById() {
-		Scanner sc = new Scanner(System.in);
 		System.out.print("검색할 제품의 번호를 입력해주세요: ");
 		int id = Integer.parseInt(sc.nextLine());
 
@@ -176,7 +173,6 @@ public class ProductManager {
 	}
 
 	public void showBrand() {
-		Scanner sc = new Scanner(System.in);
 		System.out.print("검색할 브랜드명을 입력해주세요: ");
 		String brand = sc.nextLine();
 
@@ -195,7 +191,6 @@ public class ProductManager {
 	}
 
 	public void showProductName() {
-		Scanner sc = new Scanner(System.in);
 		System.out.print("검색할 제품명을 입력해주세요: ");
 		String name = sc.nextLine();
 
@@ -214,8 +209,6 @@ public class ProductManager {
 	}
 
 	public void orderProduct() {
-
-		Scanner sc = new Scanner(System.in);
 		System.out.print("구매할 제품의 번호를 입력해주세요: ");
 		int id = Integer.parseInt(sc.nextLine());
 
