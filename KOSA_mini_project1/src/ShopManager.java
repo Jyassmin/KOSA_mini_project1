@@ -5,6 +5,7 @@ public class ShopManager{
     private final Menu menu;
     private final CustomerManager customerManager;
     private final ProductManager productManager;
+    private final OrderManager orderManager;
     private Customer currentCustomer;
     private final Scanner sc;
 
@@ -13,6 +14,7 @@ public class ShopManager{
         menu = new Menu();
         customerManager = new CustomerManager();
         productManager = new ProductManager();
+        orderManager = new OrderManager();
 		sc = new Scanner(System.in);
 
         startProgram();
@@ -66,12 +68,13 @@ public class ShopManager{
         // 관리자 메뉴
         do {
             // Display main menu
-                /*
-                   1. 쇼핑몰
-                   2. 고객 관리
-                   3. 제품 관리
-                   0. 종료
-                 */
+            /*
+               1. 쇼핑몰
+               2. 고객 관리
+               3. 제품 관리
+               4. 주문 관리
+               0. 종료
+             */
             menu.displayMainMenu();
             input = sc.nextInt();
 
@@ -79,6 +82,7 @@ public class ShopManager{
                 case 1 -> handleShoppingMenu();
                 case 2 -> handleCustomerMenu();
                 case 3 -> handleProductMenu();
+                case 4 -> handleOrderMenu();
             }
         } while (input != 0);
 
@@ -227,6 +231,26 @@ public class ShopManager{
                 case 2 -> productManager.edit();
                 case 3 -> productManager.remove();
                 case 4 -> productManager.show();
+            }
+        } while (input != 0);
+    }
+
+    private void handleOrderMenu() throws IOException {
+        int input;
+
+        do {
+            // Display "Product" menu
+            /*
+                1. 모든 주문 보기
+                2. 고객별로 보기
+                0. 이전 메뉴로
+             */
+            menu.displayOrderMenu();
+            input = sc.nextInt();
+
+            switch (input) {
+                case 1 -> orderManager.showAll(customerManager, productManager);
+                case 2 -> orderManager.showOrderByCustomer(customerManager, productManager);
             }
         } while (input != 0);
     }

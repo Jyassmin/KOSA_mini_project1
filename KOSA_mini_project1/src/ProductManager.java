@@ -39,7 +39,11 @@ public class ProductManager {
 		    }
 		    inFile.close();
 		}
-    } 	
+    }
+
+	public String getProductName(int id){
+		return productsHash.get(id).getName();
+	}
 	
 	private void addToList(Product p) {
 		products.add(p);

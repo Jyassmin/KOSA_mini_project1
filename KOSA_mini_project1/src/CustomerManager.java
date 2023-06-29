@@ -45,6 +45,10 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 		}
     }
 
+	public String getCustomerName(int id){
+		return customersHash.get(id).getName();
+	}
+
 	private boolean isCustomerExists(String nickname) {
 		for (Customer customer : customers) {
 			if (customer.getNickname().equals(nickname)) {
@@ -111,7 +115,9 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 		if(input.equals("y"))
 			isSuperUser = true;
 
-		int newId = customers.get(customers.size()-1).getId() + 1;
+		int newId = 0;
+		if(customers.size() != 0)
+			newId = customers.get(customers.size()-1).getId() + 1;
 
 		Customer c = new Customer(newId, email, password, name, nickname, age, address, isSuperUser);
 		addToList(c);
