@@ -1,3 +1,4 @@
+  // Customer.csv에서 하나의 행을 받아 객체로 (고객정보 단위)
 public class Customer {
 
 	// region members

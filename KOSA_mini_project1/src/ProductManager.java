@@ -3,9 +3,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-// hash 처리 해야줘야함
-public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성하고, methods로 조작.(so, static으로)
-	private static final String Product_CSV_Path = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\product.csv";
+
+public class ProductManager {
+	private static final String Product_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
 	private static ArrayList<Product> products;
 	private static HashMap<Integer, Product> productsHash;
 
@@ -213,4 +213,37 @@ public class ProductManager { // main에서 한 번 실행시켜 ArrayList생성
 			System.out.println("* 검색한 제품명이 존재하지 않습니다.");
 	}
 
+	public void orderProduct() {
+
+		Scanner sc = new Scanner(System.in);
+		System.out.print("구매할 제품의 번호를 입력해주세요: ");
+		int id = Integer.parseInt(sc.nextLine());
+
+
+		Product p = productsHash.get(id);
+		if (p == null) {
+			System.out.println("* 구매하실 제품번호가 존재하지 않습니다.");
+
+		} else {
+			int idx = products.indexOf(p);
+			p.setStock(p.getStock() - 1);
+
+			if (p.getStock() != 0) {
+				products.set(idx, p);
+				productsHash.put(id, p);
+
+			} else {
+				// 만약 재고가 0이라면 해당제품 삭제
+				// why? 상품리스트에서 보이지 않도록 & 실제 비지니스에서 새로운 상품을 들여올 때 수량이 없던 기존제품을 늘려주는 것보다, 새로 등록하는 것이 더 편리.
+				products.remove(idx);
+				productsHash.remove(id);
+			}
+			System.out.println("* 구매완료.");
+		}
+	}
 }
+
+
+
+
+

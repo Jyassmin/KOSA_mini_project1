@@ -14,7 +14,6 @@ public class ShopManager{
         productManager = new ProductManager();
 
         startProgram();
-
         // save the data whenever user chooses to end the program
         saveDataToFile();
     }
@@ -144,7 +143,10 @@ public class ShopManager{
             input = sc.nextInt();
 
             switch (input) {
-                case 1 -> productManager.show();
+                case 1 -> {
+                    productManager.show();
+                    displayOrderDecision();
+                }
                 case 2 -> handleSearchMenu();
             }
         } while (input != 0);
@@ -170,15 +172,18 @@ public class ShopManager{
             input = sc.nextInt();
 
             switch (input) {
-                case 1 ->
-                    // 제품번호
+                case 1 -> {
                     productManager.showProductById();
-                case 2 ->
-                    // 브랜드
+                    displayOrderDecision();
+                }
+                case 2 -> {
                     productManager.showBrand();
-                case 3 ->
-                    // 제품명
+                    displayOrderDecision();
+                }
+                case 3 -> {
                     productManager.showProductName();
+                    displayOrderDecision();
+                }
             }
         } while (input != 0);
     }
@@ -226,9 +231,30 @@ public class ShopManager{
                 case 1 -> productManager.add();
                 case 2 -> productManager.edit();
                 case 3 -> productManager.remove();
+                case 4 -> productManager.show();
             }
         } while (input != 0);
     }
 
+    private void displayOrderDecision() {
+        Scanner sc = new Scanner(System.in);
+        int input;
 
+        do {
+            // Display "Product" menu
+            /*
+                * 구매를 원하시면 1번을 눌러주세요.
+                1. 구매하기
+                0. 이전 메뉴로
+             */
+            menu.displayOrderDecision();
+            input = sc.nextInt();
+
+            if (input == 1)
+                productManager.orderProduct();
+            else if (input != 0)
+                System.out.println("잘못된 입력입니다.");
+
+        } while (input != 0);
+    }
 }
