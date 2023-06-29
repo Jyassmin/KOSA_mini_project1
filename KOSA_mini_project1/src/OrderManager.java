@@ -62,8 +62,8 @@ public class OrderManager { // main에서 한 번 실행시켜 ArrayList생성�
         int cid = Integer.parseInt(sc.nextLine());
         ArrayList<Order> customerOrders = orderHash.get(cid);
 
-        String userName = cm.getCustomerName(cid);
-        show(customerOrders, cm, pm);
+        if(customerOrders != null)
+            show(customerOrders, cm, pm);
     }
 
     public void show(ArrayList<Order> os, CustomerManager cm,  ProductManager pm) {
