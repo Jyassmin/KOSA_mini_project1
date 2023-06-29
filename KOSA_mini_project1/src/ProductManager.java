@@ -8,7 +8,7 @@ public class ProductManager {
 	private static final String Product_CSV_Path = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\product.csv";
 	private static ArrayList<Product> products;
 	private static HashMap<Integer, Product> productsHash;
-	private  Scanner sc;
+	private final Scanner sc;
 
 	ProductManager() throws IOException {} {
 		products = new ArrayList<Product>();
@@ -38,7 +38,11 @@ public class ProductManager {
 		    }
 		    inFile.close();
 		}
-    } 	
+    }
+
+	public String getProductName(int id){
+		return productsHash.get(id).getName();
+	}
 	
 	private void addToList(Product p) {
 		products.add(p);

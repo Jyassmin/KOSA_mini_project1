@@ -16,6 +16,7 @@ public class Menu {
         System.out.println("1. 쇼핑몰");
         System.out.println("2. 고객 관리");
         System.out.println("3. 제품 관리");
+        System.out.println("4. 주문 관리");
         System.out.println("0. 프로그램 종료");
         System.out.println("-------------------------");
     }
@@ -67,6 +68,15 @@ public class Menu {
         System.out.println("2. 수정");
         System.out.println("3. 삭제");
         System.out.println("4. 모든 제품 확인");
+        System.out.println("0. 이전 메뉴로");
+        System.out.println("-------------------------");
+    }
+
+    public void displayOrderMenu(){
+        System.out.println("-------------------------");
+        System.out.println("[MAIN MENU] > [1. ORDER MENU]");
+        System.out.println("1. 모든 주문 보기");
+        System.out.println("2. 고객별로 보기");
         System.out.println("0. 이전 메뉴로");
         System.out.println("-------------------------");
     }
