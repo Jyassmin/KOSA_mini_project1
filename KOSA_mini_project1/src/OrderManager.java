@@ -8,11 +8,12 @@ import java.util.Scanner;
 */
 public class OrderManager {
 
-    private static final String Order_CSV_Path = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\order.csv";
-    //private static final String Order_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/order.csv";
+    //private static final String ORDER_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\order.csv";
+    private static final String ORDER_CSV_PATH = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/order.csv";
     private static ArrayList<Order> orders;
     private static HashMap<Integer, ArrayList<Order>> orderHash;
     private final Scanner sc;
+    private final String BAR_TABLE = "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
 
     /*
         order.csv 파일에서 읽어드린 데이터로 orders와 orderHash에 채워준다
@@ -23,7 +24,7 @@ public class OrderManager {
         orderHash = new HashMap<Integer, ArrayList<Order>>();
         sc = new Scanner(System.in);
 
-        File file = new File(Order_CSV_Path);
+        File file = new File(ORDER_CSV_PATH);
         if (file.exists()) {
             BufferedReader inFile = new BufferedReader(new FileReader(file));
             String sLine = null;
@@ -94,30 +95,30 @@ public class OrderManager {
     }
 
     public void show(ArrayList<Order> os, CustomerManager cm,  ProductManager pm) {
-        System.out.println(("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
+        System.out.println((BAR_TABLE));
         System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s %-20s\n",
 				"id", "customer ID", "customer name", "product ID", "product name", "order date", "total amount", "quantity");
-
+        System.out.println((BAR_TABLE));
         if(os != null)
             for (Order e : os) {
 			System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s %-20s\n",
 					e.getId(), e.getUid(), cm.getCustomerName(e.getUid()), e.getPid(), pm.getProductName(e.getPid()),
                         e.getOrderDate(), e.getTotalAmount(), e.getQuantity());
             }
-		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		System.out.println(BAR_TABLE);
     }
 
     /*
         OrderList에 저장되어 있는 데이터들로 order.csv 파일을 덮어쓴다
     */
     public void saveToFile() {
-        File file = new File(Order_CSV_Path);
+        File file = new File(ORDER_CSV_PATH);
         BufferedWriter writer = null;
         try {
             if (file.createNewFile()) {
                 System.out.println("File created: " + file.getName());
             }
-            writer = new BufferedWriter(new FileWriter(Order_CSV_Path, false));
+            writer = new BufferedWriter(new FileWriter(ORDER_CSV_PATH, false));
 
             for(Order item : orders) {
                 String str;

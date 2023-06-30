@@ -6,11 +6,12 @@ import java.text.*;
     Product class의 관련된 기능들을 구현한 클래스
 */
 public class ProductManager {
-	private static final String Product_CSV_Path = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\product.csv";
-	//private static final String Product_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
+	//private static final String PRODUCT_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\product.csv";
+	private static final String PRODUCT_CSV_PATH = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
 	private static ArrayList<Product> products;
 	private static HashMap<Integer, Product> productsHash;
 	private final Scanner sc;
+	private final String BAR_TABLE = "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
 
 	/*
 		 product.csv 파일에서 읽어드린 데이터로 products와 productHash에 채워준다
@@ -20,7 +21,7 @@ public class ProductManager {
 		productsHash = new HashMap<Integer, Product>();
 		sc = new Scanner(System.in);
 
-		File file = new File(Product_CSV_Path);
+		File file = new File(PRODUCT_CSV_PATH);
 		if(file.exists()) {
 		    BufferedReader inFile = new BufferedReader(new FileReader(file));
 		    String sLine = null;
@@ -89,16 +90,16 @@ public class ProductManager {
 		addToList(p);
 	}
 
-	// TODO: 2023/06/29 display style
 	public void show() { // 현재 모든 data 출력(모든제품show)
-		System.out.println(("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
+		System.out.println(BAR_TABLE);
 		System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s\n",
 				"id", "name", "brand", "size", "color", "stock", "cost");
+		System.out.println(BAR_TABLE);
 		for (Product e : products) {
 			System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s\n",
 					e.getId(), e.getName(), e.getBrand(), e.getSize(), e.getColor(), e.getStock(), e.getCost());
 		}
-		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		System.out.println(BAR_TABLE);
 	}
 
 	public static int getKorCharacterCount(String kor) {
@@ -125,9 +126,9 @@ public class ProductManager {
 			return;
 		}
 		System.out.println(("─────────현재정보─────────"));
-		System.out.printf("%-15s %-15s %-15s %-15s %-15s %-15s\n",
+		System.out.printf("| %-20s %-20s %-20s %-20s %-20s %-20s\n",
 			"name", "brand", "size", "color", "stock", "cost");
-		System.out.printf("%-15s %-15s %-15s %-15s %-15s %-15s\n",
+		System.out.printf("| %-20s %-20s %-20s %-20s %-20s %-20s\n",
 			p1.getName(), p1.getBrand(), p1.getSize(), p1.getColor(), p1.getStock(), p1.getCost());
 		System.out.println(("─────────────────────────"));
 
@@ -160,13 +161,13 @@ public class ProductManager {
 		ProductList에 저장되어 있는 데이터들로 product.csv 파일을 덮어쓴다
 	*/
 	public void saveToFile() {
-		File file = new File(Product_CSV_Path);
+		File file = new File(PRODUCT_CSV_PATH);
 		BufferedWriter writer = null;
 	    try {
 	    	if (file.createNewFile()) {
 				System.out.println("File created: " + file.getName());
 			}
-	    	writer = new BufferedWriter(new FileWriter(Product_CSV_Path, false));
+	    	writer = new BufferedWriter(new FileWriter(PRODUCT_CSV_PATH, false));
 	    	
 			for(Product item : products) {
 				String str;
@@ -209,47 +210,55 @@ public class ProductManager {
 			System.out.println("* 입력하신 제품이 존재하지 않습니다.\n");
 			return;
 		}
-
-		System.out.printf("%-5s %-20s %-20s %-9s %-20s %-4s %-30s\n",
+		System.out.println(BAR_TABLE);
+		System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s\n",
 				"id", "name", "brand", "size", "color", "stock", "cost");
-		System.out.printf("%-5s %-20s %-20s %-9s %-20s %-4s %-30s\n",
+		System.out.println(BAR_TABLE);
+		System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s\n",
 				p.getId(), p.getName(), p.getBrand(), p.getSize(), p.getColor(), p.getStock(), p.getCost());
+		System.out.println(BAR_TABLE);
 	}
 
 	public void showBrand() {
 		System.out.print("검색할 브랜드명을 입력해주세요: ");
 		String brand = sc.nextLine();
 
-		System.out.printf("%-5s %-20s %-20s %-9s %-20s %-4s %-30s\n",
+		System.out.println(BAR_TABLE);
+		System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s\n",
 				"id", "name", "brand", "size", "color", "stock", "cost");
+		System.out.println(BAR_TABLE);
 		boolean flag = false;
 		for (Product e : products) {
 			if (brand.equals(e.getBrand())) {
-				System.out.printf("%-5s %-20s %-20s %-9s %-20s %-4s %-30s\n",
+				System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s\n",
 				e.getId(), e.getName(), e.getBrand(), e.getSize(), e.getColor(), e.getStock(), e.getCost());
 				flag = true;
 			}
 		}
 		if (!flag)
 			System.out.println("* 검색한 브랜드 제품이 존재하지 않습니다.");
+		System.out.println(BAR_TABLE);
 	}
 
 	public void showProductName() {
 		System.out.print("검색할 제품명을 입력해주세요: ");
 		String name = sc.nextLine();
 
-		System.out.printf("%-5s %-20s %-20s %-9s %-20s %-4s %-30s\n",
+		System.out.println(BAR_TABLE);
+		System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s\n",
 				"id", "name", "brand", "size", "color", "stock", "cost");
+		System.out.println(BAR_TABLE);
 		boolean flag = false;
 		for (Product e : products) {
 			if (name.equals(e.getName())) {
-				System.out.printf("%-5s %-20s %-20s %-9s %-20s %-4s %-30s\n",
+				System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s\n",
 				e.getId(), e.getName(), e.getBrand(), e.getSize(), e.getColor(), e.getStock(), e.getCost());
 				flag = true;
 			}
 		}
 		if (!flag)
 			System.out.println("* 검색한 제품명이 존재하지 않습니다.");
+		System.out.println(BAR_TABLE);
 	}
 
 	public Order orderProduct(int lastOrderId, int currentUid) {
