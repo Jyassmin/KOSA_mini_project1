@@ -2,15 +2,19 @@ import java.io.*;
 import java.util.*;
 import java.text.*;
 
-
-
+/*
+    Product class의 관련된 기능들을 구현한 클래스
+*/
 public class ProductManager {
-	private static final String Product_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
+	private static final String Product_CSV_Path = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\product.csv";
 	//private static final String Product_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
 	private static ArrayList<Product> products;
 	private static HashMap<Integer, Product> productsHash;
 	private final Scanner sc;
 
+	/*
+		 product.csv 파일에서 읽어드린 데이터로 products와 productHash에 채워준다
+	*/
 	ProductManager() throws IOException {} {
 		products = new ArrayList<Product>();
 		productsHash = new HashMap<Integer, Product>();
@@ -41,15 +45,25 @@ public class ProductManager {
 		}
     }
 
+	/*
+		넘겨받은 product id로 해당 product의 name을 return해준다
+	 */
 	public String getProductName(int id){
 		return productsHash.get(id).getName();
 	}
-	
+
+	/*
+	 	Product ArrayList와 hashmap에 넘겨받은 Product 객체 저장하는 메소드
+	*/
 	private void addToList(Product p) {
 		products.add(p);
 		productsHash.put(p.getId(), p);
 	}
-	
+
+	/*
+		제품명, 브랜드, 사이즈, 색상, 재고 그리고 가격 정보를 input으로 받고
+	 	새로운 Product 객체를 생성 후 데이터에 넣어준다
+	 */
 	public void add() throws IOException{ // 한 줄씩 등록
 		System.out.print("제품명: ");
 		String name = sc.nextLine();
@@ -80,14 +94,26 @@ public class ProductManager {
 		System.out.println(("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
 		System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s\n",
 				"id", "name", "brand", "size", "color", "stock", "cost");
-//		System.out.println(("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
 		for (Product e : products) {
 			System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s\n",
 					e.getId(), e.getName(), e.getBrand(), e.getSize(), e.getColor(), e.getStock(), e.getCost());
 		}
 		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 	}
-	
+
+	public static int getKorCharacterCount(String kor) {
+		int cnt = 0;
+		for (int i = 0 ; i < kor.length() ; i++) {
+			if (kor.charAt(i) >= '가' && kor.charAt(i) <= '힣') {
+				cnt++;
+			}
+		} return cnt;
+	}
+
+	/*
+		수정할 제품의 id를 입력받고 해당 제품의 수정될 내용들을 입력받은 뒤,
+		새로운 정보들로 데이터를 업데이트해준다
+	 */
 	public void edit() { // 수정
 		System.out.print("수정할 제품의 ID를 입력해주세요: ");
 		int id = Integer.parseInt(sc.nextLine());
@@ -129,7 +155,10 @@ public class ProductManager {
 		products.set(idx, p); // products ArrayList에 수정
 		productsHash.put(id, p);	// products HashMap에 수정
 	}
-	
+
+	/*
+		ProductList에 저장되어 있는 데이터들로 product.csv 파일을 덮어쓴다
+	*/
 	public void saveToFile() {
 		File file = new File(Product_CSV_Path);
 		BufferedWriter writer = null;

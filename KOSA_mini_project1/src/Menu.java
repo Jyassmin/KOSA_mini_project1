@@ -1,6 +1,9 @@
 public class Menu {
     Menu(){}
 
+    /*
+        로그인 & 회원가입 메뉴 display
+     */
     public void loginOrRegisterMenu(){
         System.out.println("─────────────────────────");
         System.out.println("[Login or Register]");
@@ -10,6 +13,9 @@ public class Menu {
         System.out.println("─────────────────────────");
     }
 
+    /*
+       Manager role의 메인 메뉴 display
+    */
     public void displayMainMenu(){
         System.out.println("─────────────────────────");
         System.out.println("[MANAGER MENU]");
@@ -21,6 +27,21 @@ public class Menu {
         System.out.println("─────────────────────────");
     }
 
+    /*
+       Customer role의 메인 메뉴 display
+    */
+    public void displayCustomerShoppingMenu(){
+        System.out.println("-------------------------");
+        System.out.println("[SHOPPING MENU]");
+        System.out.println("1. 전체 제품");
+        System.out.println("2. 상세 검색");
+        System.out.println("3. 주문 확인");
+        System.out.println("4. 정보 수정");
+        System.out.println("5. 탈퇴");
+        System.out.println("0. 프로그램 종료");
+        System.out.println("-------------------------");
+    }
+
     public void displayShoppingMenu(){
         System.out.println("─────────────────────────");
         System.out.println("[MANAGER MENU] > [1. SHOPPING MENU]");
@@ -28,18 +49,6 @@ public class Menu {
         System.out.println("2. 상세 검색");
         System.out.println("3. 주문 확인");
         System.out.println("0. 이전 메뉴로");
-        System.out.println("─────────────────────────");
-    }
-
-    public void displayCustomerShoppingMenu(){
-        System.out.println("─────────────────────────");
-        System.out.println("[SHOPPING MENU]");
-        System.out.println("1. 전체 제품 보기");
-        System.out.println("2. 상세 검색");
-        System.out.println("3. 주문 확인");
-        System.out.println("4. 정보 수정");
-        System.out.println("5. 탈퇴");
-        System.out.println("0. 프로그램 종료");
         System.out.println("─────────────────────────");
     }
 
@@ -56,6 +65,9 @@ public class Menu {
         System.out.println("─────────────────────────");
     }
 
+    /*
+       customer 관리 메뉴 display
+    */
     public void displayCustomerMenu(){
         System.out.println("─────────────────────────");
         System.out.println("[MANAGER MENU] > [2. CUSTOMER MENU]");
@@ -66,6 +78,9 @@ public class Menu {
         System.out.println("─────────────────────────");
     }
 
+    /*
+       product 관리 메뉴 display
+    */
     public void displayProductMenu(){
         System.out.println("─────────────────────────");
         System.out.println("[MANAGER MENU] > [3. PRODUCT MENU]");
@@ -77,6 +92,9 @@ public class Menu {
         System.out.println("─────────────────────────");
     }
 
+    /*
+       order 관리 메뉴 display
+    */
     public void displayOrderMenu(){
         System.out.println("─────────────────────────");
         System.out.println("[MANAGER MENU] > [4. ORDER MENU]");
@@ -86,6 +104,9 @@ public class Menu {
         System.out.println("─────────────────────────");
     }
 
+    /*
+       구매 여부 메뉴 display
+    */
     public void displayOrderDecision() {
         System.out.println("─────────────────────────");
         System.out.println("* 구매를 원하시면 1번을 눌러주세요.");
@@ -93,9 +114,4 @@ public class Menu {
         System.out.println("0. 이전 메뉴로");
         System.out.println("─────────────────────────");
     }
-
-
-
-
-
 }

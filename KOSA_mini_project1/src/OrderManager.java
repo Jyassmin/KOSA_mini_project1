@@ -3,13 +3,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class OrderManager { // main에서 한 번 실행시켜 ArrayList생성하고, methods로 조작.(so, static으로)
+/*
+    Order class의 관련된 기능들을 구현한 클래스
+*/
+public class OrderManager {
 
-    private static final String Order_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/order.csv";
+    private static final String Order_CSV_Path = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\order.csv";
     private static ArrayList<Order> orders;
     private static HashMap<Integer, ArrayList<Order>> orderHash;
     private final Scanner sc;
 
+    /*
+        order.csv 파일에서 읽어드린 데이터로 orders와 orderHash에 채워준다
+     */
     OrderManager() throws IOException
     {
         orders = new ArrayList<Order>();
@@ -39,6 +45,9 @@ public class OrderManager { // main에서 한 번 실행시켜 ArrayList생성�
         }
     }
 
+    /*
+        Order ArrayList와 hashmap에 넘겨받은 Order 객체 저장하는 메소드
+     */
     public void addToList(Order o) {
         orders.add(o);
 
@@ -53,10 +62,16 @@ public class OrderManager { // main에서 한 번 실행시켜 ArrayList생성�
         }
     }
 
+    /*
+        모든 Order 보여주는 메소드
+     */
     public void showAll(CustomerManager cm, ProductManager pm){
         show(orders, cm, pm);
     }
 
+    /*
+        고객 한명의 Order를 보여주는 메소드
+     */
     public void showOrderByManager(CustomerManager cm, ProductManager pm){
         System.out.print("고객의 ID를 입력해주세요: ");
         int cid = Integer.parseInt(sc.nextLine());
@@ -65,6 +80,9 @@ public class OrderManager { // main에서 한 번 실행시켜 ArrayList생성�
         show(customerOrders, cm, pm);
     }
 
+    /*
+        넘겨받은 Order List안에 있는 Order 출력
+     */
     public void showOrderByCustomer(CustomerManager cm, ProductManager pm, Customer cc){
         int cid = cc.getId();
         ArrayList<Order> customerOrders = orderHash.get(cid);
@@ -88,6 +106,9 @@ public class OrderManager { // main에서 한 번 실행시켜 ArrayList생성�
 		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
     }
 
+    /*
+        OrderList에 저장되어 있는 데이터들로 order.csv 파일을 덮어쓴다
+    */
     public void saveToFile() {
         File file = new File(Order_CSV_Path);
         BufferedWriter writer = null;
@@ -114,6 +135,9 @@ public class OrderManager { // main에서 한 번 실행시켜 ArrayList생성�
         }
     }
 
+    /*
+        가지고 있는 Order들 중에 마지막 아이템의 Id return해주는 메소드
+     */
     public int getLastOrderID() {
         if(orders.size() > 0)
             return orders.get(orders.size()-1).getId();
