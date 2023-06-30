@@ -12,10 +12,11 @@ import java.util.Scanner;
 */
 public class CustomerManager {
 
-	private static final String Customer_CSV_Path = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\customer.csv";
+	private static final String CUSTOMER_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\customer.csv";
+	//private static final String CUSTOMER_CSV_PATH = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/customer.csv";
 	private static ArrayList<Customer> customers;
 	private static HashMap<Integer, Customer> customersHash;
-	private final Scanner sc;
+	private final String BAR_TABLE = "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
 
 	/*
 	 	order.csv 파일에서 읽어드린 데이터로 customers와 customerHash에 채워준다
@@ -23,9 +24,10 @@ public class CustomerManager {
 	CustomerManager() throws IOException {} {
 		customers = new ArrayList<Customer>();
 		customersHash = new HashMap<Integer, Customer>();
+		Scanner sc = new Scanner(System.in);
 		sc = new Scanner(System.in);
 
-		File file = new File(Customer_CSV_Path);
+		File file = new File(CUSTOMER_CSV_PATH);
 		if(file.exists()) {
 		    BufferedReader inFile = new BufferedReader(new FileReader(file));
 		    String sLine = null;
@@ -98,6 +100,7 @@ public class CustomerManager {
 	 	존재한다면 true, 아니면 false를 return한다
 	*/
 	public Customer login(){
+		Scanner sc = new Scanner(System.in);
 		System.out.print("닉네임: ");
 		String inputNickname = sc.nextLine();
 
@@ -113,6 +116,7 @@ public class CustomerManager {
 	 	데이터에 넣어준다
 	*/
 	public void register(){
+		Scanner sc = new Scanner(System.in);
 
 		System.out.print("이름: ");
 		String name = sc.nextLine();
@@ -154,29 +158,34 @@ public class CustomerManager {
 	}
 
 	/*
-		현재 모든 data 출력(모든제품show)
+		현재 모든 data 출력(모든사용자show)
  	*/
 	public void show() {
-		System.out.printf("%-5s %-20s %-9s %-20s %-4s %-30s %15s\n",
+		System.out.println(BAR_TABLE);
+		System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-35s %-5s\n",
 				"id", "email", "name", "nickname", "age", "address", "isSuperUser");
+		System.out.println(BAR_TABLE);
 		for (Customer e : customers) {
-			System.out.printf("%-5s %-20s %-9s %-20s %-4s %-30s %15s\n",
+			System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-35s %-5s\n",
 					e.getId(), e.getEmail(), e.getName(), e.getNickname(), String.valueOf(e.getAge()), e.getAddress(), e.getIsSuperUser());
 		}
+		System.out.println(BAR_TABLE);
 	}
 
 	/*
 		현재 사용자 정보 수정
  	*/
 	public void edit(Customer currentCustomer) {
+		Scanner sc = new Scanner(System.in);
+
 		if(currentCustomer != null){
 
-			System.out.println(("─────────현재정보─────────"));
-			System.out.printf("%-15s %-15s %-15s %-4s %-30s\n",
+			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ [ 현 재 정 보 ] ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+			System.out.printf("| %-15s %-20s %-20s %-10s %-30s\n",
 				"name", "nickname", "password", "age", "address");
-			System.out.printf("%-15s %-15s %-15s %-4s %-30s\n",
+			System.out.printf("| %-15s %-20s %-20s %-10s %-30s\n",
 				currentCustomer.getName(), currentCustomer.getNickname(), currentCustomer.getPassword(), currentCustomer.getAge(), currentCustomer.getAddress());
-			System.out.println(("─────────────────────────"));
+			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 
 			int id = currentCustomer.getId();
 			System.out.println("아래에 수정될 내용을 적어주세요");
@@ -210,13 +219,13 @@ public class CustomerManager {
 		CustomerList에 저장되어 있는 데이터들로 customer.csv 파일을 덮어쓴다
 	*/
 	public void saveToFile() {
-		File file = new File(Customer_CSV_Path);
+		File file = new File(CUSTOMER_CSV_PATH);
 		BufferedWriter writer = null;
 	    try {
 	    	if (file.createNewFile()) {
 				System.out.println("File created: " + file.getName());
 			}
-	    	writer = new BufferedWriter(new FileWriter(Customer_CSV_Path, false));
+	    	writer = new BufferedWriter(new FileWriter(CUSTOMER_CSV_PATH, false));
 	    	
 			for(Customer item : customers) {
 				String str;
@@ -241,6 +250,8 @@ public class CustomerManager {
 		삭제할 Customer의 id를 입력받고 confirm이 되면 데이터에서 해당 customer를 삭제한다
 	*/
 	public void remove() {
+		Scanner sc = new Scanner(System.in);
+
 		System.out.print("삭제할 고객의 ID를 입력해주세요: ");
 		int id = Integer.parseInt(sc.nextLine());
 
@@ -256,6 +267,8 @@ public class CustomerManager {
 		현재 customer를 데이터에서 지운다
 	*/
 	public void remove(int id){
+		Scanner sc = new Scanner(System.in);
+
 		System.out.print("정말 탈퇴하시겠습니까? 맞다면 y, 아니라면 n를 입력해주세요: ");
 		String input = sc.nextLine();
 

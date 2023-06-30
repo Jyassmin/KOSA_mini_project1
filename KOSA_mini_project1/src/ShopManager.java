@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.sql.SQLSyntaxErrorException;
 import java.util.Scanner;
 
 /*
@@ -10,13 +11,14 @@ public class ShopManager{
     private final ProductManager productManager;
     private final OrderManager orderManager;
     private Customer currentCustomer;
-    private final Scanner sc;
 
     /*
         customer, product, order 각각의 Manager 클래스를 객체로 만듦으로써 정보를 가져오고
         프로그램을 시작한다
      */
     ShopManager() throws IOException {
+        Scanner sc = new Scanner(System.in);
+
         // initialize class members
         menu = new Menu();
         customerManager = new CustomerManager();
@@ -42,7 +44,7 @@ public class ShopManager{
             if(currentCustomer != null && currentCustomer.getIsSuperUser()){
                 runProgram = displayManagerMenu();
             } else if(runProgram != 0){
-                runProgram = displayCustomerMenu();
+                runProgram = displayShoppingMenu();
             }
         } while(runProgram != 0);
     }
@@ -53,9 +55,10 @@ public class ShopManager{
     private int loginOrRegister(){
         do
         {
+            Scanner scc = new Scanner(System.in);
             menu.loginOrRegisterMenu();
 
-            int input = Integer.parseInt(sc.nextLine());
+            int input = Integer.parseInt(scc.nextLine());
             switch (input) {
                 // login
                 case 1 -> {
@@ -82,7 +85,7 @@ public class ShopManager{
     */
     private int displayManagerMenu() throws IOException {
         int input;
-
+        Scanner sc = new Scanner(System.in);
         // 관리자 메뉴
         do {
             // Display main menu
@@ -97,7 +100,14 @@ public class ShopManager{
             input = sc.nextInt();
 
             switch (input) {
-                case 1 -> handleShoppingMenu();
+                case 1 -> {
+                    int val = displayShoppingMenu();
+                    // val이 5란 의미는 회원이 탈퇴했다는 뜻
+                    if(val == 5)
+                    {
+                        return val;
+                    }
+                }
                 case 2 -> handleCustomerMenu();
                 case 3 -> handleProductMenu();
                 case 4 -> handleOrderMenu();
@@ -110,12 +120,12 @@ public class ShopManager{
     /*
        적절한 Customer 메뉴를 display하고 사용자로부터 입력을 받은 다음 사용자 입력에 따라 다른 유형의 동작을 수행
    */
-    private int displayCustomerMenu(){
+    private int displayShoppingMenu(){
         int input;
-
+        Scanner sc = new Scanner(System.in);
         // 사용자 메뉴
         do {
-                // Display main menu
+            // Display main menu
                 /*
                     1. 전체 제품 보기
                     2. 상세 검색
@@ -124,7 +134,7 @@ public class ShopManager{
                     5. 탈퇴
                     0. 프로그램 종료
                 */
-            menu.displayCustomerShoppingMenu();
+            menu.displayShoppingMenu();
             input = sc.nextInt();
 
             switch (input) {
@@ -132,13 +142,14 @@ public class ShopManager{
                     productManager.show();
                     displayOrderDecision();
                 }
-                case 2 -> handleSearchMenu(0);
+                case 2 -> handleSearchMenu();
                 case 3 -> orderManager.showOrderByCustomer(customerManager, productManager, currentCustomer);
                 case 4 -> customerManager.edit(currentCustomer);
                 case 5 -> {
                     customerManager.remove(currentCustomer.getId());
                     return input;
                 }
+
             }
 
         } while (input != 0);
@@ -155,39 +166,11 @@ public class ShopManager{
     }
 
     /*
-        적절한 쇼핑 메뉴를 display하고 사용자로부터 입력을 받은 다음 사용자 입력에 따라 다른 유형의 동작을 수행
-    */
-    private void handleShoppingMenu() {
-        int input;
-
-        do {
-            // Display "Shopping" menu
-            /*
-                1. 전체 제품 보기
-                2. 상세 검색
-                3. 주문 확인
-                0. 이전 메뉴로
-            */
-            menu.displayShoppingMenu();
-            input = sc.nextInt();
-
-            switch (input) {
-                case 1 -> {
-                    productManager.show();
-                    displayOrderDecision();
-                }
-                case 2 -> handleSearchMenu(1);
-                case 3 -> orderManager.showOrderByCustomer(customerManager, productManager, currentCustomer);
-            }
-        } while (input != 0);
-    }
-
-    /*
         적절한 검색 메뉴를 display하고 사용자로부터 입력을 받은 다음 사용자 입력에 따라 다른 유형의 동작을 수행
     */
-    private void handleSearchMenu(int isSupper) {
+    private void handleSearchMenu() {
         int input;
-
+        Scanner sc = new Scanner(System.in);
         do {
             // Display "Search" menu
             /*
@@ -196,7 +179,7 @@ public class ShopManager{
                 3. 제품명
                 0. 이전 메뉴로
              */
-            menu.displaySearchMenu(isSupper);
+            menu.displaySearchMenu(currentCustomer.getIsSuperUser());
             input = sc.nextInt();
 
             switch (input) {
@@ -221,7 +204,7 @@ public class ShopManager{
     */
     private void handleCustomerMenu() throws IOException {
         int input;
-
+        Scanner sc = new Scanner(System.in);
         do {
             // Display "Customer" menu
             /*
@@ -246,7 +229,7 @@ public class ShopManager{
     */
     private void handleProductMenu() throws IOException {
         int input;
-
+        Scanner sc = new Scanner(System.in);
         do {
             // Display "Product" menu
             /*
@@ -273,7 +256,7 @@ public class ShopManager{
     */
     private void handleOrderMenu() throws IOException {
         int input;
-
+        Scanner sc = new Scanner(System.in);
         do {
             // Display "Order" menu
             /*
@@ -296,7 +279,7 @@ public class ShopManager{
     */
     private void displayOrderDecision() {
         int input;
-
+        Scanner sc = new Scanner(System.in);
         do {
             // Display "Product" menu
             /*
