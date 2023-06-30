@@ -171,12 +171,12 @@ public class CustomerManager {
 	public void edit(Customer currentCustomer) {
 		if(currentCustomer != null){
 
-			System.out.println(("---------현재정보----------"));
+			System.out.println(("─────────현재정보─────────"));
 			System.out.printf("%-15s %-15s %-15s %-4s %-30s\n",
 				"name", "nickname", "password", "age", "address");
 			System.out.printf("%-15s %-15s %-15s %-4s %-30s\n",
 				currentCustomer.getName(), currentCustomer.getNickname(), currentCustomer.getPassword(), currentCustomer.getAge(), currentCustomer.getAddress());
-			System.out.println(("-------------------------"));
+			System.out.println(("─────────────────────────"));
 
 			int id = currentCustomer.getId();
 			System.out.println("아래에 수정될 내용을 적어주세요");

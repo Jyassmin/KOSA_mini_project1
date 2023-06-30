@@ -72,7 +72,7 @@ public class OrderManager {
     /*
         고객 한명의 Order를 보여주는 메소드
      */
-    public void showOrderByCustomer(CustomerManager cm, ProductManager pm){
+    public void showOrderByManager(CustomerManager cm, ProductManager pm){
         System.out.print("고객의 ID를 입력해주세요: ");
         int cid = Integer.parseInt(sc.nextLine());
         ArrayList<Order> customerOrders = orderHash.get(cid);
@@ -83,15 +83,29 @@ public class OrderManager {
     /*
         넘겨받은 Order List안에 있는 Order 출력
      */
+    public void showOrderByCustomer(CustomerManager cm, ProductManager pm, Customer cc){
+        int cid = cc.getId();
+        ArrayList<Order> customerOrders = orderHash.get(cid);
+        if (customerOrders != null)
+            show(customerOrders, cm, pm);
+        else
+            System.out.println("* 주문 내역이 존재하지 않습니다.");
+
+
+    }
+
     public void show(ArrayList<Order> os, CustomerManager cm,  ProductManager pm) {
-        System.out.printf("%-5s %-10s %-20s %-9s %-20s %-20s %-4s %-30s\n",
-                "id", "customer ID", "customer name", "product ID", "product name", "order date", "total amount", "quantity");
+        System.out.println(("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
+        System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s %-20s\n",
+				"id", "customer ID", "customer name", "product ID", "product name", "order date", "total amount", "quantity");
+
         if(os != null)
             for (Order e : os) {
-                System.out.printf("%-5s %-10s %-20s %-9s %-20s %-20s %-4s %-30s\n",
-                        e.getId(), e.getUid(), cm.getCustomerName(e.getUid()), e.getPid(), pm.getProductName(e.getPid()),
+			System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s %-20s\n",
+					e.getId(), e.getUid(), cm.getCustomerName(e.getUid()), e.getPid(), pm.getProductName(e.getPid()),
                         e.getOrderDate(), e.getTotalAmount(), e.getQuantity());
             }
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
     }
 
     /*

@@ -7,6 +7,7 @@ import java.text.*;
 */
 public class ProductManager {
 	private static final String Product_CSV_Path = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\product.csv";
+	//private static final String Product_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
 	private static ArrayList<Product> products;
 	private static HashMap<Integer, Product> productsHash;
 	private final Scanner sc;
@@ -90,43 +91,14 @@ public class ProductManager {
 
 	// TODO: 2023/06/29 display style
 	public void show() { // 현재 모든 data 출력(모든제품show)
-		System.out.println("──────────────────────────────────────────────────────────────────────────────────────");
-		System.out.printf("| %-4s | %-12s | %-10s | %-10s | %-10s | %-15s | %-15s |\n",
+		System.out.println(("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
+		System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s\n",
 				"id", "name", "brand", "size", "color", "stock", "cost");
-		System.out.println("──────────────────────────────────────────────────────────────────────────────────────");
-
-		int maxIdWidth = 0;
-		int maxNameWidth = 0;
-		int maxBrandWidth = 0;
-		int maxSizeWidth = 0;
-		int maxColorWidth = 0;
-		int maxStockWidth = 0;
-		int maxCostWidth = 0;
-
 		for (Product e : products) {
-			maxIdWidth = Math.max(maxIdWidth, String.valueOf(e.getId()).length());
-			maxNameWidth = Math.max(maxNameWidth, e.getName().length());
-			maxBrandWidth = Math.max(maxBrandWidth, e.getBrand().length());
-			maxSizeWidth = Math.max(maxSizeWidth, String.valueOf(e.getSize()).length());
-			maxColorWidth = Math.max(maxColorWidth, e.getColor().length());
-			maxStockWidth = Math.max(maxStockWidth, String.valueOf(e.getStock()).length());
-			maxCostWidth = Math.max(maxCostWidth, String.valueOf(e.getCost()).length());
+			System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s\n",
+					e.getId(), e.getName(), e.getBrand(), e.getSize(), e.getColor(), e.getStock(), e.getCost());
 		}
-
-		for (Product e : products) {
-			String id = String.format("%-" + maxIdWidth + "s", e.getId());
-			String name = String.format("%-" + maxNameWidth + "s", e.getName());
-			String brand = String.format("%-" + maxBrandWidth + "s", e.getBrand());
-			String size = String.format("%-" + maxSizeWidth + "s", e.getSize());
-			String color = String.format("%-" + maxColorWidth + "s", e.getColor());
-			String stock = String.format("%-" + maxStockWidth + "s", e.getStock());
-			String cost = String.format("%-" + maxCostWidth + "s", e.getCost());
-
-			System.out.printf("| %-4s | %-12s | %-"+ maxBrandWidth +"s | %-10s | %-10s | %-15s | %-15s |\n",
-					id, name, brand, size, color, stock, cost);
-		}
-
-		System.out.println("──────────────────────────────────────────────────────────────────────────────────────");
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 	}
 
 	public static int getKorCharacterCount(String kor) {
@@ -152,12 +124,12 @@ public class ProductManager {
 			System.out.println("* 입력하신 제품이 존재하지 않습니다.\n");
 			return;
 		}
-		System.out.println(("---------현재정보----------"));
+		System.out.println(("─────────현재정보─────────"));
 		System.out.printf("%-15s %-15s %-15s %-15s %-15s %-15s\n",
 			"name", "brand", "size", "color", "stock", "cost");
 		System.out.printf("%-15s %-15s %-15s %-15s %-15s %-15s\n",
 			p1.getName(), p1.getBrand(), p1.getSize(), p1.getColor(), p1.getStock(), p1.getCost());
-		System.out.println(("-------------------------"));
+		System.out.println(("─────────────────────────"));
 
 		System.out.println("아래에 수정될 내용을 적어주세요: ");
 		System.out.print("제품명: ");
