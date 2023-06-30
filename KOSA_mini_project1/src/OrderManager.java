@@ -72,8 +72,6 @@ public class OrderManager { // main에서 한 번 실행시켜 ArrayList생성�
             show(customerOrders, cm, pm);
         else
             System.out.println("* 주문 내역이 존재하지 않습니다.");
-
-
     }
 
     public void show(ArrayList<Order> os, CustomerManager cm,  ProductManager pm) {
