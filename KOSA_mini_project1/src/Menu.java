@@ -34,9 +34,10 @@ public class Menu {
         System.out.println("-------------------------");
         System.out.println("[SHOPPING MENU]");
         System.out.println("1. 전체 제품");
-        System.out.println("2. 검색");
-        System.out.println("3. 정보 수정");
-        System.out.println("4. 탈퇴");
+        System.out.println("2. 상세 검색");
+        System.out.println("3. 주문 확인");
+        System.out.println("4. 정보 수정");
+        System.out.println("5. 탈퇴");
         System.out.println("0. 프로그램 종료");
         System.out.println("-------------------------");
     }
@@ -113,9 +114,4 @@ public class Menu {
         System.out.println("0. 이전 메뉴로");
         System.out.println("─────────────────────────");
     }
-
-
-
-
-
 }
