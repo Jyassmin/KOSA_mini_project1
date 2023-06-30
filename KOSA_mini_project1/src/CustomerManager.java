@@ -12,8 +12,8 @@ import java.util.Scanner;
 */
 public class CustomerManager {
 
-	private static final String CUSTOMER_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\customer.csv";
-	//private static final String CUSTOMER_CSV_PATH = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/customer.csv";
+	//private static final String CUSTOMER_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\customer.csv";
+	private static final String CUSTOMER_CSV_PATH = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/customer.csv";
 	private static ArrayList<Customer> customers;
 	private static HashMap<Integer, Customer> customersHash;
 	private final String BAR_TABLE = "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
@@ -249,7 +249,7 @@ public class CustomerManager {
 	/*
 		삭제할 Customer의 id를 입력받고 confirm이 되면 데이터에서 해당 customer를 삭제한다
 	*/
-	public void remove() {
+	public void remove(OrderManager orderManager) {
 		Scanner sc = new Scanner(System.in);
 
 		System.out.print("삭제할 고객의 ID를 입력해주세요: ");
@@ -259,31 +259,32 @@ public class CustomerManager {
 		String input = sc.nextLine();
 
 		if (input.equals("y")) {
-			removeFromList(id);
+			removeFromList(id, orderManager);
 		}
 	}
 
 	/*
 		현재 customer를 데이터에서 지운다
 	*/
-	public void remove(int id){
+	public void remove(int id, OrderManager orderManager){
 		Scanner sc = new Scanner(System.in);
 
 		System.out.print("정말 탈퇴하시겠습니까? 맞다면 y, 아니라면 n를 입력해주세요: ");
 		String input = sc.nextLine();
 
 		if (input.equals("y")) {
-			removeFromList(id);
+			removeFromList(id, orderManager);
 		}
 	}
 	
 	/*
 		넘겨받은 customer의 id로 arraylist와 hashmap에서 삭제한다
 	 */
-	public void removeFromList(int id)
+	public void removeFromList(int id, OrderManager orderManager)
 	{
 		Customer c = customersHash.get(id);
 		customers.remove(c);
 		customersHash.remove(id);
+		orderManager.removeOrderByUid(id);
 	}
 }

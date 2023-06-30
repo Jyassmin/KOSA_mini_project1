@@ -6,8 +6,8 @@ import java.text.*;
     Product class의 관련된 기능들을 구현한 클래스
 */
 public class ProductManager {
-	private static final String PRODUCT_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\product.csv";
-	//private static final String PRODUCT_CSV_PATH = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
+	//private static final String PRODUCT_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\product.csv";
+	private static final String PRODUCT_CSV_PATH = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
 	private static ArrayList<Product> products;
 	private static HashMap<Integer, Product> productsHash;
 	private final String BAR_TABLE = "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
@@ -129,14 +129,14 @@ public class ProductManager {
 			System.out.println("* 입력하신 제품이 존재하지 않습니다.\n");
 			return;
 		}
-		System.out.println(("─────────현재정보─────────"));
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ [ 제 품 정 보 ] ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		System.out.printf("| %-20s %-20s %-20s %-20s %-20s %-20s\n",
 			"name", "brand", "size", "color", "stock", "cost");
 		System.out.printf("| %-20s %-20s %-20s %-20s %-20s %-20s\n",
 			p1.getName(), p1.getBrand(), p1.getSize(), p1.getColor(), p1.getStock(), p1.getCost());
-		System.out.println(("─────────────────────────"));
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 
-		System.out.println("아래에 수정될 내용을 적어주세요: ");
+		System.out.println("* 아래에 수정될 내용을 적어주세요");
 		System.out.print("제품명: ");
 		String name = sc.nextLine();
 		
@@ -197,7 +197,7 @@ public class ProductManager {
 		System.out.print("삭제할 제품의 ID를 입력해주세요: ");
 		int id = Integer.parseInt(sc.nextLine());
 		
-		System.out.println("정말 삭제하시겠습니까? 맞다면 y, 아니라면 n를 입력해주세요");
+		System.out.print("정말 삭제하시겠습니까? 맞다면 y, 아니라면 n를 입력해주세요");
 		String input = sc.nextLine();
 
 		if (input.equals("y")) { // String 비교에서는 equals!

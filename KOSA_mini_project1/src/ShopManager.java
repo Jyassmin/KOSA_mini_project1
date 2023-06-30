@@ -134,7 +134,7 @@ public class ShopManager{
                     5. 탈퇴
                     0. 프로그램 종료
                 */
-            menu.displayShoppingMenu();
+            menu.displayShoppingMenu(currentCustomer.getIsSuperUser());
             input = sc.nextInt();
 
             switch (input) {
@@ -146,7 +146,7 @@ public class ShopManager{
                 case 3 -> orderManager.showOrderByCustomer(customerManager, productManager, currentCustomer);
                 case 4 -> customerManager.edit(currentCustomer);
                 case 5 -> {
-                    customerManager.remove(currentCustomer.getId());
+                    customerManager.remove(currentCustomer.getId(), orderManager);
                     return input;
                 }
 
@@ -218,7 +218,7 @@ public class ShopManager{
 
             switch (input) {
                 case 1 -> customerManager.register();
-                case 2 -> customerManager.remove();
+                case 2 -> customerManager.remove(orderManager);
                 case 3 -> customerManager.show();
             }
         } while (input != 0);

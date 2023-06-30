@@ -33,7 +33,7 @@ public class Menu {
     /*
        Customer role의 메인 메뉴 display
     */
-    public void displayShoppingMenu(){
+    public void displayShoppingMenu(boolean isSupper){
         System.out.println(str_bar);
         System.out.println("[SHOPPING MENU]");
         System.out.println("1. 전체 제품");
@@ -41,7 +41,10 @@ public class Menu {
         System.out.println("3. 주문 확인");
         System.out.println("4. 정보 수정");
         System.out.println("5. 탈퇴");
-        System.out.println("0. 프로그램 종료");
+        if (isSupper)
+            System.out.println("0. 이전 메뉴로");
+        else
+            System.out.println("0. 프로그램 종료");
         System.out.println(str_bar);
     }
 
