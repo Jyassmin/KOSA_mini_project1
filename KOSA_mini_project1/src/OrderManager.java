@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class OrderManager {
 
     private static final String Order_CSV_Path = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\order.csv";
+    //private static final String Order_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/order.csv";
     private static ArrayList<Order> orders;
     private static HashMap<Integer, ArrayList<Order>> orderHash;
     private final Scanner sc;
