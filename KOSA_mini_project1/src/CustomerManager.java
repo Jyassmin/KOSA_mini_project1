@@ -7,13 +7,19 @@ import java.util.Scanner;
 // command e
 // commad shift enter
 
-public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생성하고, methods로 조작.(so, static으로)
+/*
+    Customer class의 관련된 기능들을 구현한 클래스
+*/
+public class CustomerManager {
 
-	private static final String Customer_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/customer.csv";
+	private static final String Customer_CSV_Path = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\customer.csv";
 	private static ArrayList<Customer> customers;
 	private static HashMap<Integer, Customer> customersHash;
 	private final Scanner sc;
 
+	/*
+	 	order.csv 파일에서 읽어드린 데이터로 customers와 customerHash에 채워준다
+	*/
 	CustomerManager() throws IOException {} {
 		customers = new ArrayList<Customer>();
 		customersHash = new HashMap<Integer, Customer>();
@@ -45,10 +51,17 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 		}
     }
 
+	/*
+	 	넘겨받은 customer의 id로 customer name을 return한다
+	*/
 	public String getCustomerName(int id){
 		return customersHash.get(id).getName();
 	}
 
+	/*
+	 	넘겨받은 customer의 nickname이 데이터에 이미 존재하는 이름인지 확인 후
+		있다면 true, 없으면 false를 return한다
+	*/
 	private boolean isCustomerExists(String nickname) {
 		for (Customer customer : customers) {
 			if (customer.getNickname().equals(nickname)) {
@@ -57,6 +70,12 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 		}
 		return false; // Customer not found
 	}
+
+
+	/*
+	 	넘겨받은 customer의 nickname과 password가 데이터에 이미 존재하는지 확인 후
+		있다면 customer 객체를, 없으면 null을 return한다
+	*/
 	private Customer isCustomerExists(String nickname, String password) {
 		for (Customer customer : customers) {
 			if (customer.getNickname().equals(nickname) && customer.getPassword().equals(password)) {
@@ -65,12 +84,19 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 		}
 		return null; // Customer not found
 	}
-	
+
+	/*
+	 	Customer ArrayList와 hashmap에 넘겨받은 Customer 객체 저장하는 메소드
+	*/
 	private void addToList(Customer c) {
 		customers.add(c);
 		customersHash.put(c.getId(), c);
 	}
 
+	/*
+	 	닉네임과 비밀번호 input 받고 닉네임과 비밀번호가 데이터에 존재하는지 확인 후
+	 	존재한다면 true, 아니면 false를 return한다
+	*/
 	public Customer login(){
 		System.out.print("닉네임: ");
 		String inputNickname = sc.nextLine();
@@ -81,6 +107,11 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 		return isCustomerExists(inputNickname, inputPassword);
 	}
 
+	/*
+		이름, 닉네임, 주소, 나이, 비밀번호, 이메일과 role 정보를 input으로 받고
+	 	같은 닉네임의 customer가 데이터에 존재하지 않으면, 새로운 Customer 객체를 생성 후
+	 	데이터에 넣어준다
+	*/
 	public void register(){
 
 		System.out.print("이름: ");
@@ -102,7 +133,6 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 
 		System.out.print("나이: ");
 		int age = Integer.parseInt(sc.nextLine());
-
 		System.out.print("비밀번호: ");
 		String password = sc.nextLine();
 
@@ -122,39 +152,11 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 		Customer c = new Customer(newId, email, password, name, nickname, age, address, isSuperUser);
 		addToList(c);
 	}
-	
-	public void add() throws IOException{ // 한 줄씩 등록
-		System.out.print("이름: ");
-		String name = sc.nextLine(); //br.readLine();
-		
-		System.out.print("닉네임: ");
-		String nickname = sc.nextLine(); //br.readLine();
-		
-		System.out.print("주소: ");
-		String address = sc.nextLine(); //br.readLine();
-		
-		System.out.print("나이: ");
-		int age = Integer.parseInt(sc.nextLine()); //br.readLine());
-		
-		System.out.print("비밀번호: ");
-		String password = sc.nextLine(); //br.readLine();
-		
-		System.out.print("이메일: ");
-		String email = sc.nextLine(); //br.readLine();
 
-		System.out.print("관리자면 y, 아니라면 n: ");
-		boolean isSuperUser = false;
-		String input = sc.nextLine();
-		if(input.equals("y"))
-			isSuperUser = true;
-
-		int newId = customers.get(customers.size()-1).getId() + 1;
-
-		Customer c = new Customer(newId, email, password, name, nickname, age, address, isSuperUser);
-		addToList(c);
-	}
-	
-	public void show() { // 현재 모든 data 출력(모든제품show)
+	/*
+		현재 모든 data 출력(모든제품show)
+ 	*/
+	public void show() {
 		System.out.printf("%-5s %-20s %-9s %-20s %-4s %-30s %15s\n",
 				"id", "email", "name", "nickname", "age", "address", "isSuperUser");
 		for (Customer e : customers) {
@@ -162,8 +164,11 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 					e.getId(), e.getEmail(), e.getName(), e.getNickname(), String.valueOf(e.getAge()), e.getAddress(), e.getIsSuperUser());
 		}
 	}
-	
-	public void edit(Customer currentCustomer) { // 현재 사용자 정보 수정
+
+	/*
+		현재 사용자 정보 수정
+ 	*/
+	public void edit(Customer currentCustomer) {
 		if(currentCustomer != null){
 
 			System.out.println(("---------현재정보----------"));
@@ -200,7 +205,10 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 			customersHash.put(id, currentCustomer);	// customers HashMap에 수정
 		}
 	}
-	
+
+	/*
+		CustomerList에 저장되어 있는 데이터들로 customer.csv 파일을 덮어쓴다
+	*/
 	public void saveToFile() {
 		File file = new File(Customer_CSV_Path);
 		BufferedWriter writer = null;
@@ -229,6 +237,9 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 		} 
 	}
 
+	/*
+		삭제할 Customer의 id를 입력받고 confirm이 되면 데이터에서 해당 customer를 삭제한다
+	*/
 	public void remove() {
 		System.out.print("삭제할 고객의 ID를 입력해주세요: ");
 		int id = Integer.parseInt(sc.nextLine());
@@ -237,20 +248,29 @@ public class CustomerManager { // main에서 한 번 실행시켜 ArrayList생�
 		String input = sc.nextLine();
 
 		if (input.equals("y")) {
-			Customer c = customersHash.get(id);
-			customers.remove(c);
-			customersHash.remove(id);
+			removeFromList(id);
 		}
 	}
 
+	/*
+		현재 customer를 데이터에서 지운다
+	*/
 	public void remove(int id){
 		System.out.print("정말 탈퇴하시겠습니까? 맞다면 y, 아니라면 n를 입력해주세요: ");
 		String input = sc.nextLine();
 
 		if (input.equals("y")) {
-			Customer c = customersHash.get(id);
-			customers.remove(c);
-			customersHash.remove(id);
+			removeFromList(id);
 		}
+	}
+	
+	/*
+		넘겨받은 customer의 id로 arraylist와 hashmap에서 삭제한다
+	 */
+	public void removeFromList(int id)
+	{
+		Customer c = customersHash.get(id);
+		customers.remove(c);
+		customersHash.remove(id);
 	}
 }

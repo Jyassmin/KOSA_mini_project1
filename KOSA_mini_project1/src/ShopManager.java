@@ -1,6 +1,9 @@
 import java.io.IOException;
 import java.util.Scanner;
 
+/*
+    쇼핑몰 전체를 관리해주는 class
+ */
 public class ShopManager{
     private final Menu menu;
     private final CustomerManager customerManager;
@@ -9,6 +12,10 @@ public class ShopManager{
     private Customer currentCustomer;
     private final Scanner sc;
 
+    /*
+        customer, product, order 각각의 Manager 클래스를 객체로 만듦으로써 정보를 가져오고
+        프로그램을 시작한다
+     */
     ShopManager() throws IOException {
         // initialize class members
         menu = new Menu();
@@ -22,6 +29,9 @@ public class ShopManager{
         saveDataToFile();
     }
 
+    /*
+       프로그램이 시작되면 input 0을 받을 때까지 프로그램을 반복한다
+    */
     void startProgram() throws IOException {
         int runProgram = 0;
         do{
@@ -37,6 +47,9 @@ public class ShopManager{
         } while(runProgram != 0);
     }
 
+    /*
+       로그인 혹은 회원가입 메뉴를 display하고 사용자로부터 입력을 받은 다음 사용자 입력에 따라 다른 유형의 동작을 수행
+    */
     private void loginOrRegister(){
         do
         {
@@ -62,6 +75,10 @@ public class ShopManager{
     }
 
     // region MAIN MENU
+
+    /*
+       Manager 메인 메뉴를 display하고 사용자로부터 입력을 받은 다음 사용자 입력에 따라 다른 유형의 동작을 수행
+    */
     private int displayManagerMenu() throws IOException {
         int input;
 
@@ -89,12 +106,15 @@ public class ShopManager{
         return input;
     }
 
+    /*
+       적절한 Customer 메뉴를 display하고 사용자로부터 입력을 받은 다음 사용자 입력에 따라 다른 유형의 동작을 수행
+   */
     private int displayCustomerMenu(){
         int input;
 
         // 사용자 메뉴
         do {
-            // Display main menu
+                // Display main menu
                 /*
                     1. 전체 제품
                     2. 검색
@@ -129,8 +149,7 @@ public class ShopManager{
     }
 
     /*
-        Description: displays appropriate shopping menu and get input from user. Then do different types of actions
-                    depends on user input
+        적절한 쇼핑 메뉴를 display하고 사용자로부터 입력을 받은 다음 사용자 입력에 따라 다른 유형의 동작을 수행
     */
     private void handleShoppingMenu() {
         int input;
@@ -156,8 +175,7 @@ public class ShopManager{
     }
 
     /*
-        Description: displays appropriate search menu and get input from user. Then do different types of actions
-                    depends on user input
+        적절한 검색 메뉴를 display하고 사용자로부터 입력을 받은 다음 사용자 입력에 따라 다른 유형의 동작을 수행
     */
     private void handleSearchMenu() {
         int input;
@@ -190,6 +208,9 @@ public class ShopManager{
         } while (input != 0);
     }
 
+    /*
+        적절한 customer 메뉴를 display하고 사용자로부터 입력을 받은 다음 사용자 입력에 따라 다른 유형의 동작을 수행
+    */
     private void handleCustomerMenu() throws IOException {
         int input;
 
@@ -205,13 +226,16 @@ public class ShopManager{
             input = sc.nextInt();
 
             switch (input) {
-                case 1 -> customerManager.add();
+                case 1 -> customerManager.register();
                 case 2 -> customerManager.remove();
                 case 3 -> customerManager.show();
             }
         } while (input != 0);
     }
 
+    /*
+        적절한 product 메뉴를 display하고 사용자로부터 입력을 받은 다음 사용자 입력에 따라 다른 유형의 동작을 수행
+    */
     private void handleProductMenu() throws IOException {
         int input;
 
@@ -236,11 +260,14 @@ public class ShopManager{
         } while (input != 0);
     }
 
+    /*
+        적절한 order 메뉴를 display하고 사용자로부터 입력을 받은 다음 사용자 입력에 따라 다른 유형의 동작을 수행
+    */
     private void handleOrderMenu() throws IOException {
         int input;
 
         do {
-            // Display "Product" menu
+            // Display "Order" menu
             /*
                 1. 모든 주문 보기
                 2. 고객별로 보기
@@ -256,6 +283,9 @@ public class ShopManager{
         } while (input != 0);
     }
 
+    /*
+        적절한 order 여부 메뉴를 display하고 사용자로부터 입력을 받은 다음 사용자 입력에 따라 다른 유형의 동작을 수행
+    */
     private void displayOrderDecision() {
         int input;
 

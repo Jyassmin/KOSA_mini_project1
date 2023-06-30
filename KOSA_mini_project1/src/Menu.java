@@ -1,6 +1,9 @@
 public class Menu {
     Menu(){}
 
+    /*
+        로그인 & 회원가입 메뉴 display
+     */
     public void loginOrRegisterMenu(){
         System.out.println("-------------------------");
         System.out.println("[Login or Register]");
@@ -10,6 +13,9 @@ public class Menu {
         System.out.println("-------------------------");
     }
 
+    /*
+       Manager role의 메인 메뉴 display
+    */
     public void displayMainMenu(){
         System.out.println("-------------------------");
         System.out.println("[MAIN MENU]");
@@ -17,6 +23,20 @@ public class Menu {
         System.out.println("2. 고객 관리");
         System.out.println("3. 제품 관리");
         System.out.println("4. 주문 관리");
+        System.out.println("0. 프로그램 종료");
+        System.out.println("-------------------------");
+    }
+
+    /*
+       Customer role의 메인 메뉴 display
+    */
+    public void displayCustomerShoppingMenu(){
+        System.out.println("-------------------------");
+        System.out.println("[SHOPPING MENU]");
+        System.out.println("1. 전체 제품");
+        System.out.println("2. 검색");
+        System.out.println("3. 정보 수정");
+        System.out.println("4. 탈퇴");
         System.out.println("0. 프로그램 종료");
         System.out.println("-------------------------");
     }
@@ -30,17 +50,11 @@ public class Menu {
         System.out.println("-------------------------");
     }
 
-    public void displayCustomerShoppingMenu(){
-        System.out.println("-------------------------");
-        System.out.println("[SHOPPING MENU]");
-        System.out.println("1. 전체 제품");
-        System.out.println("2. 검색");
-        System.out.println("3. 정보 수정");
-        System.out.println("4. 탈퇴");
-        System.out.println("0. 프로그램 종료");
-        System.out.println("-------------------------");
-    }
 
+
+    /*
+       제품 검색 메뉴 display
+    */
     public void displaySearchMenu(){
         System.out.println("-------------------------");
         System.out.println("[MAIN MENU] > [1. SHOPPING MENU] > [2. SEARCH MENU]");
@@ -51,6 +65,9 @@ public class Menu {
         System.out.println("-------------------------");
     }
 
+    /*
+       customer 관리 메뉴 display
+    */
     public void displayCustomerMenu(){
         System.out.println("-------------------------");
         System.out.println("[MAIN MENU] > [1. CUSTOMER MENU]");
@@ -61,6 +78,9 @@ public class Menu {
         System.out.println("-------------------------");
     }
 
+    /*
+       product 관리 메뉴 display
+    */
     public void displayProductMenu(){
         System.out.println("-------------------------");
         System.out.println("[MAIN MENU] > [1. PRODUCT MENU]");
@@ -72,6 +92,9 @@ public class Menu {
         System.out.println("-------------------------");
     }
 
+    /*
+       order 관리 메뉴 display
+    */
     public void displayOrderMenu(){
         System.out.println("-------------------------");
         System.out.println("[MAIN MENU] > [1. ORDER MENU]");
@@ -81,6 +104,9 @@ public class Menu {
         System.out.println("-------------------------");
     }
 
+    /*
+       구매 여부 메뉴 display
+    */
     public void displayOrderDecision() {
         System.out.println("-------------------------");
         System.out.println("* 구매를 원하시면 1번을 눌러주세요."); // 파라미터 받아서 출력 다르게 하기

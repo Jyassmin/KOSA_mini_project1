@@ -74,29 +74,5 @@ public class Product { // Customer.csv에서 하나의 행을 받아 객체로 �
 		this.cost = cost;
 	}
 	//endregion
-
-
-	// region methods
-	public void edit(
-			String name,
-			String brand,
-			int size,
-			String color,
-			int stock,
-			long cost) {
-
-		this.name = name;
-		this.brand = brand;
-		this.size = size;
-		this.color = color;
-		this.stock = stock;
-		this.cost = cost;
-
-	}
-
-	public void getinfo() {
-		System.out.printf("%s %s %s %d %s %d %d", this.id, this.name, this.brand, this.size, this.color, this.stock, this.cost);
-	}
-	// endregion
 	
 }
