@@ -6,6 +6,7 @@ import java.text.*;
 
 public class ProductManager {
 	private static final String Product_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
+	//private static final String Product_CSV_Path = "/Users/kyle/work/KOSA_mini_project/Kosa_mini_project1/data/product.csv";
 	private static ArrayList<Product> products;
 	private static HashMap<Integer, Product> productsHash;
 	private final Scanner sc;
@@ -76,15 +77,15 @@ public class ProductManager {
 
 	// TODO: 2023/06/29 display style
 	public void show() { // 현재 모든 data 출력(모든제품show)
-		System.out.println(("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
-		System.out.printf("| %-4s|  %-12s %-10s %-5s %-10s %-5s %-15s |\n",
+		System.out.println(("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
+		System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s\n",
 				"id", "name", "brand", "size", "color", "stock", "cost");
-		System.out.println(("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
+//		System.out.println(("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
 		for (Product e : products) {
-			System.out.printf("| %-4s|  %-12s %-10s %-5s %-10s %-5s %-15s |\n",
+			System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s\n",
 					e.getId(), e.getName(), e.getBrand(), e.getSize(), e.getColor(), e.getStock(), e.getCost());
 		}
-		System.out.println(("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 	}
 	
 	public void edit() { // 수정
@@ -97,12 +98,12 @@ public class ProductManager {
 			System.out.println("* 입력하신 제품이 존재하지 않습니다.\n");
 			return;
 		}
-		System.out.println(("---------현재정보----------"));
+		System.out.println(("─────────현재정보─────────"));
 		System.out.printf("%-15s %-15s %-15s %-15s %-15s %-15s\n",
 			"name", "brand", "size", "color", "stock", "cost");
 		System.out.printf("%-15s %-15s %-15s %-15s %-15s %-15s\n",
 			p1.getName(), p1.getBrand(), p1.getSize(), p1.getColor(), p1.getStock(), p1.getCost());
-		System.out.println(("-------------------------"));
+		System.out.println(("─────────────────────────"));
 
 		System.out.println("아래에 수정될 내용을 적어주세요: ");
 		System.out.print("제품명: ");

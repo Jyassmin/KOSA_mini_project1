@@ -26,18 +26,18 @@ public class ShopManager{
         int runProgram = 0;
         do{
             currentCustomer = null;
-            loginOrRegister();
+            runProgram = loginOrRegister();
 
             // display appropriate menu depends on user role: manager or customer
-            if(currentCustomer.getIsSuperUser()){
+            if(currentCustomer != null && currentCustomer.getIsSuperUser()){
                 runProgram = displayManagerMenu();
-            } else {
+            } else if(runProgram != 0){
                 runProgram = displayCustomerMenu();
             }
         } while(runProgram != 0);
     }
 
-    private void loginOrRegister(){
+    private int loginOrRegister(){
         do
         {
             menu.loginOrRegisterMenu();
@@ -55,10 +55,12 @@ public class ShopManager{
                     customerManager.register();
                 }
                 case 0 -> {
-                    return;
+                    return 0;
                 }
             }
         }while(currentCustomer == null);
+
+        return 1;
     }
 
     // region MAIN MENU
@@ -96,20 +98,25 @@ public class ShopManager{
         do {
             // Display main menu
                 /*
-                    1. 전체 제품
-                    2. 검색
-                    3. 정보 수정
-                    4. 탈퇴
-                    0. 종료
+                    1. 전체 제품 보기
+                    2. 상세 검색
+                    3. 주문 확인
+                    4. 정보 수정
+                    5. 탈퇴
+                    0. 프로그램 종료
                 */
             menu.displayCustomerShoppingMenu();
             input = sc.nextInt();
 
             switch (input) {
-                case 1 -> productManager.show();
-                case 2 -> handleSearchMenu();
-                case 3 -> customerManager.edit(currentCustomer);
-                case 4 -> {
+                case 1 -> {
+                    productManager.show();
+                    displayOrderDecision();
+                }
+                case 2 -> handleSearchMenu(0);
+                case 3 -> orderManager.showOrderByCustomer(customerManager, productManager, currentCustomer);
+                case 4 -> customerManager.edit(currentCustomer);
+                case 5 -> {
                     customerManager.remove(currentCustomer.getId());
                     return input;
                 }
@@ -138,8 +145,9 @@ public class ShopManager{
         do {
             // Display "Shopping" menu
             /*
-                1. 전체 제품
-                2. 검색
+                1. 전체 제품 보기
+                2. 상세 검색
+                3. 주문 확인
                 0. 이전 메뉴로
             */
             menu.displayShoppingMenu();
@@ -150,7 +158,8 @@ public class ShopManager{
                     productManager.show();
                     displayOrderDecision();
                 }
-                case 2 -> handleSearchMenu();
+                case 2 -> handleSearchMenu(1);
+                case 3 -> orderManager.showOrderByCustomer(customerManager, productManager, currentCustomer);
             }
         } while (input != 0);
     }
@@ -159,7 +168,7 @@ public class ShopManager{
         Description: displays appropriate search menu and get input from user. Then do different types of actions
                     depends on user input
     */
-    private void handleSearchMenu() {
+    private void handleSearchMenu(int isSupper) {
         int input;
 
         do {
@@ -170,7 +179,7 @@ public class ShopManager{
                 3. 제품명
                 0. 이전 메뉴로
              */
-            menu.displaySearchMenu();
+            menu.displaySearchMenu(isSupper);
             input = sc.nextInt();
 
             switch (input) {
@@ -251,7 +260,7 @@ public class ShopManager{
 
             switch (input) {
                 case 1 -> orderManager.showAll(customerManager, productManager);
-                case 2 -> orderManager.showOrderByCustomer(customerManager, productManager);
+                case 2 -> orderManager.showOrderByManager(customerManager, productManager);
             }
         } while (input != 0);
     }
