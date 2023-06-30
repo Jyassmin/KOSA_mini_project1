@@ -77,7 +77,6 @@ public class ShopManager{
     }
 
     // region MAIN MENU
-
     /*
        Manager 메인 메뉴를 display하고 사용자로부터 입력을 받은 다음 사용자 입력에 따라 다른 유형의 동작을 수행
     */
