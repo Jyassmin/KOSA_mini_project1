@@ -15,7 +15,6 @@ public class StringUtils {
             System.out.println("* 잘못된 입력입니다. 숫자를 정확히 입력해주세요.");
             return false;
         }
-
         return true;
     }
 
