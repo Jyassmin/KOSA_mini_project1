@@ -6,7 +6,6 @@ import util.StringUtils;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 // command alt o
 // command e
@@ -17,8 +16,8 @@ import java.util.Scanner;
 */
 public class CustomerManager {
 
-	//private static final String CUSTOMER_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\data\\customer.csv";
-	private static final String CUSTOMER_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/customer.csv";
+	private static final String CUSTOMER_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\data\\customer.csv";
+	//private static final String CUSTOMER_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/customer.csv";
 	private static ArrayList<Customer> customers;
 	private static HashMap<Integer, Customer> customersHash;
 	private final String BAR_TABLE = "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";

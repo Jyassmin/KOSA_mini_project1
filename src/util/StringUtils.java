@@ -3,6 +3,9 @@ package util;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+/*
+    String에 관련된 Utility class
+ */
 public class StringUtils {
 
     /*
@@ -25,6 +28,8 @@ public class StringUtils {
         Scanner sc = new Scanner(System.in);
         System.out.print(printMessage);
 
-        return sc.nextLine();
+        String temp = sc.nextLine();
+        sc.close();
+        return temp;
     }
 }

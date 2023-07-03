@@ -7,15 +7,14 @@ import util.StringUtils;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 /*
     model.Order class의 관련된 기능들을 구현한 클래스
 */
 public class OrderManager {
 
-    //private static final String ORDER_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\data\\order.csv";
-    private static final String ORDER_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/order.csv";
+    private static final String ORDER_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\data\\order.csv";
+    //private static final String ORDER_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/order.csv";
     private static ArrayList<Order> orders;
     private static HashMap<Integer, ArrayList<Order>> orderHash;
     private final String BAR_TABLE = "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
@@ -101,6 +100,12 @@ public class OrderManager {
             System.out.println("* 주문 내역이 존재하지 않습니다.");
     }
 
+    
+    /*
+        ArrayList<Order>, CustomerManager, ProductManager 타입의 variable들을 넘겨받으며 넘겨받은 os variable에 들어있는 
+        정보들을 출력한다. 각 order의 uid(user id)와 pid(product id), cm(CustomerManager)와 pm(Product Manager)를 이용해
+        customer의 이름과 product의 이름 또한 출력해준다
+     */
     public void show(ArrayList<Order> os, CustomerManager cm, ProductManager pm) {
         System.out.println((BAR_TABLE));
         System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s %-20s\n",
@@ -154,12 +159,13 @@ public class OrderManager {
             return 0;
     }
 
+    /*
+        Uid(user id)를 넘겨받고 넘겨받은 Uid로 주문된 주문내역을 지우는 메소드
+     */
     public void removeOrderByUid(int Uid) {
         if (orderHash.get(Uid) != null) {
             orderHash.remove(Uid);
             orders.removeIf(o -> o.getUid() == Uid);
         }
     }
-
-
 }
