@@ -20,14 +20,11 @@ public class ShopManager{
         프로그램을 시작한다
      */
     public ShopManager() throws IOException {
-        Scanner sc = new Scanner(System.in);
-
         // initialize class members
         menu = new Menu();
         customerManager = new CustomerManager();
         productManager = new ProductManager();
         orderManager = new OrderManager();
-		sc = new Scanner(System.in);
 
         startProgram();
         // save the data whenever user chooses to end the program

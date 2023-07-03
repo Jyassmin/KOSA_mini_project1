@@ -27,7 +27,6 @@ public class OrderManager {
     {
         orders = new ArrayList<Order>();
         orderHash = new HashMap<Integer, ArrayList<Order>>();
-        Scanner sc = new Scanner(System.in);
 
         File file = new File(ORDER_CSV_PATH);
         if (file.exists()) {

@@ -108,15 +108,6 @@ public class ProductManager {
 		System.out.println(BAR_TABLE);
 	}
 
-	public static int getKorCharacterCount(String kor) {
-		int cnt = 0;
-		for (int i = 0 ; i < kor.length() ; i++) {
-			if (kor.charAt(i) >= '가' && kor.charAt(i) <= '힣') {
-				cnt++;
-			}
-		} return cnt;
-	}
-
 	/*
 		수정할 제품의 id를 입력받고 해당 제품의 수정될 내용들을 입력받은 뒤,
 		새로운 정보들로 데이터를 업데이트해준다
