@@ -1,3 +1,6 @@
+package manager;
+
+import model.Customer;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,12 +11,12 @@ import java.util.Scanner;
 // commad shift enter
 
 /*
-    Customer class의 관련된 기능들을 구현한 클래스
+    model.Customer class의 관련된 기능들을 구현한 클래스
 */
 public class CustomerManager {
 
-	//private static final String CUSTOMER_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\customer.csv";
-	private static final String CUSTOMER_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/customer.csv";
+	private static final String CUSTOMER_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\data\\customer.csv";
+	//private static final String CUSTOMER_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/customer.csv";
 	private static ArrayList<Customer> customers;
 	private static HashMap<Integer, Customer> customersHash;
 	private final String BAR_TABLE = "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
@@ -67,10 +70,10 @@ public class CustomerManager {
 	private boolean isCustomerExists(String nickname) {
 		for (Customer customer : customers) {
 			if (customer.getNickname().equals(nickname)) {
-				return true; // Customer with matching nickname found
+				return true; // model.Customer with matching nickname found
 			}
 		}
-		return false; // Customer not found
+		return false; // model.Customer not found
 	}
 
 
@@ -81,14 +84,14 @@ public class CustomerManager {
 	private Customer isCustomerExists(String nickname, String password) {
 		for (Customer customer : customers) {
 			if (customer.getNickname().equals(nickname) && customer.getPassword().equals(password)) {
-				return customer; // Customer with matching properties found
+				return customer; // model.Customer with matching properties found
 			}
 		}
-		return null; // Customer not found
+		return null; // model.Customer not found
 	}
 
 	/*
-	 	Customer ArrayList와 hashmap에 넘겨받은 Customer 객체 저장하는 메소드
+	 	model.Customer ArrayList와 hashmap에 넘겨받은 model.Customer 객체 저장하는 메소드
 	*/
 	private void addToList(Customer c) {
 		customers.add(c);
@@ -112,7 +115,7 @@ public class CustomerManager {
 
 	/*
 		이름, 닉네임, 주소, 나이, 비밀번호, 이메일과 role 정보를 input으로 받고
-	 	같은 닉네임의 customer가 데이터에 존재하지 않으면, 새로운 Customer 객체를 생성 후
+	 	같은 닉네임의 customer가 데이터에 존재하지 않으면, 새로운 model.Customer 객체를 생성 후
 	 	데이터에 넣어준다
 	*/
 	public void register(){

@@ -1,15 +1,19 @@
+package manager;
+
+import model.Order;
+import model.Customer;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 /*
-    Order class의 관련된 기능들을 구현한 클래스
+    model.Order class의 관련된 기능들을 구현한 클래스
 */
 public class OrderManager {
 
-    //private static final String ORDER_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\order.csv";
-    private static final String ORDER_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/order.csv";
+    private static final String ORDER_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\data\\order.csv";
+    //private static final String ORDER_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/order.csv";
     private static ArrayList<Order> orders;
     private static HashMap<Integer, ArrayList<Order>> orderHash;
     private final String BAR_TABLE = "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
@@ -47,7 +51,7 @@ public class OrderManager {
     }
 
     /*
-        Order ArrayList와 hashmap에 넘겨받은 Order 객체 저장하는 메소드
+        model.Order ArrayList와 hashmap에 넘겨받은 model.Order 객체 저장하는 메소드
      */
     public void addToList(Order o) {
         orders.add(o);
@@ -64,7 +68,7 @@ public class OrderManager {
     }
 
     /*
-        모든 Order 보여주는 메소드
+        모든 model.Order 보여주는 메소드
      */
     public void showAll(CustomerManager cm, ProductManager pm){
         show(orders, cm, pm);
@@ -83,7 +87,7 @@ public class OrderManager {
     }
 
     /*
-        넘겨받은 Order List안에 있는 Order 출력
+        넘겨받은 model.Order List안에 있는 model.Order 출력
      */
     public void showOrderByCustomer(CustomerManager cm, ProductManager pm, Customer cc){
         int cid = cc.getId();
@@ -94,7 +98,7 @@ public class OrderManager {
             System.out.println("* 주문 내역이 존재하지 않습니다.");
     }
 
-    public void show(ArrayList<Order> os, CustomerManager cm,  ProductManager pm) {
+    public void show(ArrayList<Order> os, CustomerManager cm, ProductManager pm) {
         System.out.println((BAR_TABLE));
         System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s %-20s\n",
 				"id", "customer ID", "customer name", "product ID", "product name", "order date", "total amount", "quantity");

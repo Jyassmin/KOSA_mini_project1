@@ -1,3 +1,5 @@
+import manager.ShopManager;
+
 import java.io.IOException;
 
 public class Main {

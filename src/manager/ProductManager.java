@@ -1,13 +1,17 @@
+package manager;
+
+import model.Product;
+import model.Order;
 import java.io.*;
 import java.util.*;
 import java.text.*;
 
 /*
-    Product class의 관련된 기능들을 구현한 클래스
+    model.Product class의 관련된 기능들을 구현한 클래스
 */
 public class ProductManager {
-	//private static final String PRODUCT_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\KOSA_mini_project1\\data\\product.csv";
-	private static final String PRODUCT_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/product.csv";
+	private static final String PRODUCT_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\data\\product.csv";
+	//private static final String PRODUCT_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/product.csv";
 	private static ArrayList<Product> products;
 	private static HashMap<Integer, Product> productsHash;
 	private final String BAR_TABLE = "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
@@ -54,7 +58,7 @@ public class ProductManager {
 	}
 
 	/*
-	 	Product ArrayList와 hashmap에 넘겨받은 Product 객체 저장하는 메소드
+	 	model.Product ArrayList와 hashmap에 넘겨받은 model.Product 객체 저장하는 메소드
 	*/
 	private void addToList(Product p) {
 		products.add(p);
@@ -63,7 +67,7 @@ public class ProductManager {
 
 	/*
 		제품명, 브랜드, 사이즈, 색상, 재고 그리고 가격 정보를 input으로 받고
-	 	새로운 Product 객체를 생성 후 데이터에 넣어준다
+	 	새로운 model.Product 객체를 생성 후 데이터에 넣어준다
 	 */
 	public void add() throws IOException{ // 한 줄씩 등록
 		Scanner sc = new Scanner(System.in);

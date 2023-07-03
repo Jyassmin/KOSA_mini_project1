@@ -1,6 +1,8 @@
+package ui;
+
 public class Menu {
     private final String str_bar;
-    Menu(){
+    public Menu(){
         str_bar = "─────────────────────────";
     }
 
@@ -31,7 +33,7 @@ public class Menu {
     }
 
     /*
-       Customer role의 메인 메뉴 display
+       model.Customer role의 메인 메뉴 display
     */
     public void displayShoppingMenu(boolean isSupper){
         System.out.println(str_bar);

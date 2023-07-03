@@ -1,5 +1,6 @@
+package model;
 
-public class Product { // Customer.csv에서 하나의 행을 받아 객체로 생성(고객정보 단위)
+public class Product { // model.Customer.csv에서 하나의 행을 받아 객체로 생성(고객정보 단위)
 	private int id;
 	private String name;
 	private String brand;
@@ -9,13 +10,13 @@ public class Product { // Customer.csv에서 하나의 행을 받아 객체로 �
 	private long cost;
 
 	
-	Product (int id,
-			String name,
-			String brand,
-			int size,
-			String color,
-			int stock,
-			long cost) {
+	public Product(int id,
+				   String name,
+				   String brand,
+				   int size,
+				   String color,
+				   int stock,
+				   long cost) {
 		
 		this.id = id;
 		this.name = name;

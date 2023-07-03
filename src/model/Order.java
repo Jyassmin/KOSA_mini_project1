@@ -1,3 +1,5 @@
+package model;
+
 public class Order {
 
     private int id;
@@ -7,12 +9,12 @@ public class Order {
     private double totalAmount;
     private int quantity;
 
-    Order (int id,
-         int uid,
-         int pid,
-         String orderDate,
-         double totalAmount,
-         int quantity) {
+    public Order(int id,
+                 int uid,
+                 int pid,
+                 String orderDate,
+                 double totalAmount,
+                 int quantity) {
 
         this.id = id;
         this.uid = uid;

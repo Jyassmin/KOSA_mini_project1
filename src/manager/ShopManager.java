@@ -1,5 +1,8 @@
+package manager;
+
+import model.*;
+import ui.Menu;
 import java.io.IOException;
-import java.sql.SQLSyntaxErrorException;
 import java.util.Scanner;
 
 /*
@@ -16,7 +19,7 @@ public class ShopManager{
         customer, product, order 각각의 Manager 클래스를 객체로 만듦으로써 정보를 가져오고
         프로그램을 시작한다
      */
-    ShopManager() throws IOException {
+    public ShopManager() throws IOException {
         Scanner sc = new Scanner(System.in);
 
         // initialize class members
@@ -118,7 +121,7 @@ public class ShopManager{
     }
 
     /*
-       적절한 Customer 메뉴를 display하고 사용자로부터 입력을 받은 다음 사용자 입력에 따라 다른 유형의 동작을 수행
+       적절한 model.Customer 메뉴를 display하고 사용자로부터 입력을 받은 다음 사용자 입력에 따라 다른 유형의 동작을 수행
    */
     private int displayShoppingMenu(){
         int input;
@@ -206,7 +209,7 @@ public class ShopManager{
         int input;
         Scanner sc = new Scanner(System.in);
         do {
-            // Display "Customer" menu
+            // Display "model.Customer" menu
             /*
                 1. 등록
                 2. 탈퇴
@@ -231,7 +234,7 @@ public class ShopManager{
         int input;
         Scanner sc = new Scanner(System.in);
         do {
-            // Display "Product" menu
+            // Display "model.Product" menu
             /*
                 1. 등록
                 2. 수정
@@ -258,7 +261,7 @@ public class ShopManager{
         int input;
         Scanner sc = new Scanner(System.in);
         do {
-            // Display "Order" menu
+            // Display "model.Order" menu
             /*
                 1. 모든 주문 보기
                 2. 고객별로 보기
@@ -281,7 +284,7 @@ public class ShopManager{
         int input;
         Scanner sc = new Scanner(System.in);
         do {
-            // Display "Product" menu
+            // Display "model.Product" menu
             /*
                 * 구매를 원하시면 1번을 눌러주세요.
                 1. 구매하기

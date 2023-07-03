@@ -1,4 +1,6 @@
-  // Customer.csv에서 하나의 행을 받아 객체로 (고객정보 단위)
+package model;
+
+// model.Customer.csv에서 하나의 행을 받아 객체로 (고객정보 단위)
 public class Customer {
 
 	// region members
@@ -14,7 +16,7 @@ public class Customer {
 
 	// region constructors
 	Customer(){}
-	Customer (
+	public Customer(
 			int id,
 			String email,
 			String password,
@@ -31,7 +33,7 @@ public class Customer {
 		this.age = age;
 		this.address = address;
 	}
-	Customer (
+	public Customer(
 			int id,
 			String email,
 			String password,
