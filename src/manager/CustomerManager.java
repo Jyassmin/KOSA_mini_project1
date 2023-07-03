@@ -1,6 +1,8 @@
 package manager;
 
 import model.Customer;
+import util.StringUtils;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -139,7 +141,15 @@ public class CustomerManager {
 		String address = sc.nextLine();
 
 		System.out.print("나이: ");
-		int age = Integer.parseInt(sc.nextLine());
+		String tempAge = sc.nextLine();
+		while(!StringUtils.containsOnlyNumbers(tempAge))
+		{
+			System.out.println("* 숫자로만 입력해주세요\n");
+			System.out.print("나이: ");
+			tempAge = sc.nextLine();
+		}
+		int age = Integer.parseInt(tempAge);
+
 		System.out.print("비밀번호: ");
 		String password = sc.nextLine();
 
@@ -202,8 +212,13 @@ public class CustomerManager {
 			System.out.print("주소: ");
 			String address = sc.nextLine();
 
-			System.out.print("나이: ");
-			int age = Integer.parseInt(sc.nextLine());
+			String tempAge = sc.nextLine();
+			while(!StringUtils.containsOnlyNumbers(tempAge))
+			{
+				System.out.print("나이: ");
+				tempAge = sc.nextLine();
+			}
+			int age = Integer.parseInt(tempAge);
 
 			System.out.print("비밀번호: ");
 			String password = sc.nextLine();
