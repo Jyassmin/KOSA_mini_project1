@@ -5,13 +5,14 @@ import model.Order;
 import java.io.*;
 import java.util.*;
 import java.text.*;
+import util.StringUtils;
 
 /*
     model.Product class의 관련된 기능들을 구현한 클래스
 */
 public class ProductManager {
-	private static final String PRODUCT_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\data\\product.csv";
-	//private static final String PRODUCT_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/product.csv";
+	//private static final String PRODUCT_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\data\\product.csv";
+	private static final String PRODUCT_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/product.csv";
 	private static ArrayList<Product> products;
 	private static HashMap<Integer, Product> productsHash;
 	private final String BAR_TABLE = "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
@@ -77,18 +78,30 @@ public class ProductManager {
 		
 		System.out.print("브랜드: ");
 		String brand = sc.nextLine();
-		
-		System.out.print("사이즈: ");
-		int size = Integer.parseInt(sc.nextLine());
-		
+
+		String size_str;
+		do{
+			System.out.print("사이즈: ");
+			size_str = sc.nextLine();
+		} while (!StringUtils.containsOnlyNumbers(size_str));
+		int size = Integer.parseInt(size_str);
+
 		System.out.print("색상: ");
 		String color = sc.nextLine(); //br.readLine());
-		
-		System.out.print("재고: ");
-		int stock = Integer.parseInt(sc.nextLine());
-		
-		System.out.print("가격: ");
-		long cost = Long.parseLong(sc.nextLine());
+
+		String stock_str;
+		do{
+			System.out.print("재고: ");
+			stock_str = sc.nextLine();
+		} while (!StringUtils.containsOnlyNumbers(stock_str));
+		int stock = Integer.parseInt(stock_str);
+
+		String cost_str;
+		do{
+			System.out.print("가격: ");
+			cost_str = sc.nextLine();
+		} while (!StringUtils.containsOnlyNumbers(cost_str));
+		long cost = Long.parseLong(cost_str);
 		
 		int newId = products.get(products.size()-1).getId() + 1;
 		
@@ -108,15 +121,6 @@ public class ProductManager {
 		System.out.println(BAR_TABLE);
 	}
 
-	public static int getKorCharacterCount(String kor) {
-		int cnt = 0;
-		for (int i = 0 ; i < kor.length() ; i++) {
-			if (kor.charAt(i) >= '가' && kor.charAt(i) <= '힣') {
-				cnt++;
-			}
-		} return cnt;
-	}
-
 	/*
 		수정할 제품의 id를 입력받고 해당 제품의 수정될 내용들을 입력받은 뒤,
 		새로운 정보들로 데이터를 업데이트해준다
@@ -124,8 +128,12 @@ public class ProductManager {
 	public void edit() { // 수정
 		Scanner sc = new Scanner(System.in);
 
-		System.out.print("수정할 제품의 ID를 입력해주세요: ");
-		int id = Integer.parseInt(sc.nextLine());
+		String id_str;
+		do{
+			System.out.print("수정할 제품의 ID를 입력해주세요: ");
+			id_str = sc.nextLine();
+		} while (!StringUtils.containsOnlyNumbers(id_str));
+		int id = Integer.parseInt(id_str);
 
 		Product p1 = productsHash.get(id);
 		int idx = products.indexOf(p1);
@@ -146,18 +154,31 @@ public class ProductManager {
 		
 		System.out.print("브랜드: ");
 		String brand = sc.nextLine();
-		
-		System.out.print("사이즈: ");
-		int size = Integer.parseInt(sc.nextLine());
+
+
+		String size_str;
+		do{
+			System.out.print("사이즈: ");
+			size_str = sc.nextLine();
+		} while (!StringUtils.containsOnlyNumbers(size_str));
+		int size = Integer.parseInt(size_str);
 		
 		System.out.print("색상: ");
 		String color = sc.nextLine();
-		
-		System.out.print("재고: ");
-		int stock = Integer.parseInt(sc.nextLine());
-		
-		System.out.print("가격: ");
-		int cost = Integer.parseInt(sc.nextLine());
+
+		String stock_str;
+		do{
+			System.out.print("재고: ");
+			stock_str = sc.nextLine();
+		} while (!StringUtils.containsOnlyNumbers(stock_str));
+		int stock = Integer.parseInt(stock_str);
+
+		String cost_str;
+		do{
+			System.out.print("가격: ");
+			cost_str = sc.nextLine();
+		} while (!StringUtils.containsOnlyNumbers(cost_str));
+		int cost = Integer.parseInt(cost_str);
 		
 		Product p = new Product(id, name, brand, size, color, stock, cost);
 
@@ -198,8 +219,12 @@ public class ProductManager {
 	public void remove() {
 		Scanner sc = new Scanner(System.in);
 
-		System.out.print("삭제할 제품의 ID를 입력해주세요: ");
-		int id = Integer.parseInt(sc.nextLine());
+		String id_str;
+		do{
+			System.out.print("삭제할 제품의 ID를 입력해주세요: ");
+			id_str = sc.nextLine();
+		} while (!StringUtils.containsOnlyNumbers(id_str));
+		int id = Integer.parseInt(id_str);
 		
 		System.out.print("정말 삭제하시겠습니까? 맞다면 y, 아니라면 n를 입력해주세요");
 		String input = sc.nextLine();
@@ -214,8 +239,12 @@ public class ProductManager {
 	public void showProductById() {
 		Scanner sc = new Scanner(System.in);
 
-		System.out.print("검색할 제품의 번호를 입력해주세요: ");
-		int id = Integer.parseInt(sc.nextLine());
+		String id_str;
+		do{
+			System.out.print("검색할 제품의 번호를 입력해주세요: ");
+			id_str = sc.nextLine();
+		} while (!StringUtils.containsOnlyNumbers(id_str));
+		int id = Integer.parseInt(id_str);
 
 		Product p = productsHash.get(id);
 		if(p == null) {
@@ -278,17 +307,25 @@ public class ProductManager {
 
 	public Order orderProduct(int lastOrderId, int currentUid) {
 		Scanner sc = new Scanner(System.in);
-		System.out.print("구매할 제품의 번호를 입력해주세요: ");
-		int id = Integer.parseInt(sc.nextLine());
 
+		String id_str="";
+		do{
+			System.out.print("구매할 제품의 번호를 입력해주세요: ");
+			id_str = sc.nextLine();
+		} while (!StringUtils.containsOnlyNumbers(id_str));
+		int id = Integer.parseInt(id_str);
 
 		Product p = productsHash.get(id);
 		if (p == null) {
 			System.out.println("* 구매하실 제품번호가 존재하지 않습니다.");
 
 		} else {
-			System.out.print("수량을 입력해주세요: ");
-			int quantity = Integer.parseInt(sc.nextLine());
+			String quantity_str;
+			do{
+				System.out.print("수량을 입력해주세요: ");
+				quantity_str = sc.nextLine();
+			} while (!StringUtils.containsOnlyNumbers(quantity_str));
+			int quantity = Integer.parseInt(quantity_str);
 
 			if (p.getStock() - quantity < 0)
 				System.out.println("* 재고가 충분하지 않습니다: ");
