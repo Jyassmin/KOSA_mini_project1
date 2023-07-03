@@ -1,6 +1,8 @@
 package model;
 
-// model.Customer.csv에서 하나의 행을 받아 객체로 (고객정보 단위)
+/*
+	Model data class
+ */
 public class Customer {
 
 	// region members
@@ -105,29 +107,6 @@ public class Customer {
 		this.isSuperUser = isSuperUser;
 	}
 	//endregion
-
-
-	// region methods
-	public void edit(
-			String email,
-			String password,
-			String name,
-			String nickname,
-			int age,
-			String address) {
-
-		this.email = email;
-		this.password = password;
-		this.name = name;
-		this.nickname = nickname;
-		this.age = age;
-		this.address = address;
-	}
-
-	public void getinfo() {
-		System.out.printf("%s %s %s %s %s %d %s", this.id, this.email, this.password, this.name, this.nickname, this.age, this.address);
-	}
-	// endregion
 }
 
 

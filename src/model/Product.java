@@ -1,6 +1,9 @@
 package model;
 
-public class Product { // model.Customer.csv에서 하나의 행을 받아 객체로 생성(고객정보 단위)
+/*
+	Product data 구조 class
+ */
+public class Product {
 	private int id;
 	private String name;
 	private String brand;

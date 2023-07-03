@@ -6,7 +6,6 @@ import util.StringUtils;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 // command alt o
 // command e
@@ -17,8 +16,8 @@ import java.util.Scanner;
 */
 public class CustomerManager {
 
-	//private static final String CUSTOMER_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\data\\customer.csv";
-	private static final String CUSTOMER_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/customer.csv";
+	private static final String CUSTOMER_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\data\\customer.csv";
+	//private static final String CUSTOMER_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/customer.csv";
 	private static ArrayList<Customer> customers;
 	private static HashMap<Integer, Customer> customersHash;
 	private final String BAR_TABLE = "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
@@ -29,8 +28,6 @@ public class CustomerManager {
 	CustomerManager() throws IOException {} {
 		customers = new ArrayList<Customer>();
 		customersHash = new HashMap<Integer, Customer>();
-		Scanner sc = new Scanner(System.in);
-		sc = new Scanner(System.in);
 
 		File file = new File(CUSTOMER_CSV_PATH);
 		if(file.exists()) {
@@ -117,8 +114,6 @@ public class CustomerManager {
 	 	데이터에 넣어준다
 	*/
 	public void register(){
-		Scanner sc = new Scanner(System.in);
-
 		String name = StringUtils.printAndGetInput("이름: ");
 
 		String nickname = StringUtils.printAndGetInput("닉네임: ");
@@ -174,8 +169,6 @@ public class CustomerManager {
 		현재 사용자 정보 수정
  	*/
 	public void edit(Customer currentCustomer) {
-		Scanner sc = new Scanner(System.in);
-
 		if(currentCustomer != null){
 
 			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ [ 현 재 정 보 ] ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
@@ -246,8 +239,6 @@ public class CustomerManager {
 		삭제할 Customer의 id를 입력받고 confirm이 되면 데이터에서 해당 customer를 삭제한다
 	*/
 	public void remove(OrderManager orderManager) {
-		Scanner sc = new Scanner(System.in);
-
 		String tempId = "";
 		do{
 			tempId = StringUtils.printAndGetInput("삭제할 고객의 ID를 입력해주세요: ");
@@ -265,8 +256,6 @@ public class CustomerManager {
 		현재 customer를 데이터에서 지운다
 	*/
 	public void remove(int id, OrderManager orderManager){
-		Scanner sc = new Scanner(System.in);
-
 		String input = StringUtils.printAndGetInput("정말 탈퇴하시겠습니까? 맞다면 y, 아니라면 n를 입력해주세요: ");
 
 		if (input.equals("y")) {

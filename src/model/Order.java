@@ -1,5 +1,8 @@
 package model;
 
+/*
+	Order data class
+ */
 public class Order {
 
     private int id;
