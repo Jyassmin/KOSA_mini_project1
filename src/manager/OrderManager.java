@@ -12,8 +12,8 @@ import java.util.Scanner;
 */
 public class OrderManager {
 
-    private static final String ORDER_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\data\\order.csv";
-    //private static final String ORDER_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/order.csv";
+    //private static final String ORDER_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\data\\order.csv";
+    private static final String ORDER_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/order.csv";
     private static ArrayList<Order> orders;
     private static HashMap<Integer, ArrayList<Order>> orderHash;
     private final String BAR_TABLE = "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
