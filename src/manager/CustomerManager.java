@@ -105,12 +105,8 @@ public class CustomerManager {
 	 	존재한다면 true, 아니면 false를 return한다
 	*/
 	public Customer login(){
-		Scanner sc = new Scanner(System.in);
-		System.out.print("닉네임: ");
-		String inputNickname = sc.nextLine();
-
-		System.out.print("비밀번호: ");
-		String inputPassword = sc.nextLine();
+		String inputNickname = StringUtils.printAndGetInput("닉네임: ");
+		String inputPassword = StringUtils.printAndGetInput("비밀번호: ");
 
 		return isCustomerExists(inputNickname, inputPassword);
 	}
@@ -123,42 +119,31 @@ public class CustomerManager {
 	public void register(){
 		Scanner sc = new Scanner(System.in);
 
-		System.out.print("이름: ");
-		String name = sc.nextLine();
+		String name = StringUtils.printAndGetInput("이름: ");
 
-		System.out.print("닉네임: ");
-		String nickname = sc.nextLine();
+		String nickname = StringUtils.printAndGetInput("닉네임: ");
 		// checking if the nickname already exist in database
 		// if it is, ask for different nickname otherwise, continue
 		while(isCustomerExists(nickname))
 		{
 			System.out.println("* 동일한 닉네임이 존재합니다. 다른 닉네임을 입력해주세요\n");
-			System.out.print("닉네임: ");
-			nickname = sc.nextLine();
+			nickname = StringUtils.printAndGetInput("닉네임: ");
 		}
 
-		System.out.print("주소: ");
-		String address = sc.nextLine();
+		String address = StringUtils.printAndGetInput("주소: ");
 
-		System.out.print("나이: ");
-		String tempAge = sc.nextLine();
-		while(!StringUtils.containsOnlyNumbers(tempAge))
-		{
-			System.out.println("* 숫자로만 입력해주세요\n");
-			System.out.print("나이: ");
-			tempAge = sc.nextLine();
-		}
+		String tempAge = "";
+		do{
+			tempAge = StringUtils.printAndGetInput("나이: ");
+		}while(!StringUtils.containsOnlyNumbers(tempAge));
 		int age = Integer.parseInt(tempAge);
 
-		System.out.print("비밀번호: ");
-		String password = sc.nextLine();
+		String password = StringUtils.printAndGetInput("비밀번호: ");
 
-		System.out.print("이메일: ");
-		String email = sc.nextLine();
+		String email = StringUtils.printAndGetInput("이메일: ");
 
-		System.out.print("관리자면 y, 아니라면 n: ");
 		boolean isSuperUser = false;
-		String input = sc.nextLine();
+		String input = StringUtils.printAndGetInput("관리자면 y, 아니라면 n: ");
 		if(input.equals("y"))
 			isSuperUser = true;
 
@@ -203,28 +188,21 @@ public class CustomerManager {
 			int id = currentCustomer.getId();
 			System.out.println("아래에 수정될 내용을 적어주세요");
 
-			System.out.print("이름: ");
-			String name = sc.nextLine();
+			String name = StringUtils.printAndGetInput("이름: ");
 
-			System.out.print("닉네임: ");
-			String nickname = sc.nextLine();
+			String nickname = StringUtils.printAndGetInput("닉네임: ");
 
-			System.out.print("주소: ");
-			String address = sc.nextLine();
+			String address = StringUtils.printAndGetInput("주소: ");
 
-			String tempAge = sc.nextLine();
-			while(!StringUtils.containsOnlyNumbers(tempAge))
-			{
-				System.out.print("나이: ");
-				tempAge = sc.nextLine();
-			}
+			String tempAge = "";
+			do{
+				tempAge = StringUtils.printAndGetInput("나이: ");
+			}while(!StringUtils.containsOnlyNumbers(tempAge));
 			int age = Integer.parseInt(tempAge);
 
-			System.out.print("비밀번호: ");
-			String password = sc.nextLine();
+			String password = StringUtils.printAndGetInput("비밀번호: ");
 
-			System.out.print("이메일: ");
-			String email = sc.nextLine();
+			String email = StringUtils.printAndGetInput("이메일: ");
 
 			int idx = customers.indexOf(currentCustomer);
 			currentCustomer = new Customer(id, email, password, name, nickname, age, address);
@@ -270,11 +248,13 @@ public class CustomerManager {
 	public void remove(OrderManager orderManager) {
 		Scanner sc = new Scanner(System.in);
 
-		System.out.print("삭제할 고객의 ID를 입력해주세요: ");
-		int id = Integer.parseInt(sc.nextLine());
+		String tempId = "";
+		do{
+			tempId = StringUtils.printAndGetInput("삭제할 고객의 ID를 입력해주세요: ");
+		}while(!StringUtils.containsOnlyNumbers(tempId));
+		int id = Integer.parseInt(tempId);
 
-		System.out.print("정말 삭제하시겠습니까? 맞다면 y, 아니라면 n를 입력해주세요: ");
-		String input = sc.nextLine();
+		String input = StringUtils.printAndGetInput("정말 삭제하시겠습니까? 맞다면 y, 아니라면 n를 입력해주세요: ");
 
 		if (input.equals("y")) {
 			removeFromList(id, orderManager);
@@ -287,8 +267,7 @@ public class CustomerManager {
 	public void remove(int id, OrderManager orderManager){
 		Scanner sc = new Scanner(System.in);
 
-		System.out.print("정말 탈퇴하시겠습니까? 맞다면 y, 아니라면 n를 입력해주세요: ");
-		String input = sc.nextLine();
+		String input = StringUtils.printAndGetInput("정말 탈퇴하시겠습니까? 맞다면 y, 아니라면 n를 입력해주세요: ");
 
 		if (input.equals("y")) {
 			removeFromList(id, orderManager);

@@ -2,6 +2,8 @@ package manager;
 
 import model.Order;
 import model.Customer;
+import util.StringUtils;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,9 +80,11 @@ public class OrderManager {
         고객 한명의 Order를 보여주는 메소드
      */
     public void showOrderByManager(CustomerManager cm, ProductManager pm){
-        System.out.print("고객의 ID를 입력해주세요: ");
-        Scanner sc = new Scanner(System.in);
-        int cid = Integer.parseInt(sc.nextLine());
+        String tempId = "";
+        do{
+            tempId = StringUtils.printAndGetInput("고객의 ID를 입력해주세요: ");
+        }while(!StringUtils.containsOnlyNumbers(tempId));
+        int cid = Integer.parseInt(tempId);
         ArrayList<Order> customerOrders = orderHash.get(cid);
 
         show(customerOrders, cm, pm);
