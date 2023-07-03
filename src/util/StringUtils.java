@@ -28,8 +28,6 @@ public class StringUtils {
         Scanner sc = new Scanner(System.in);
         System.out.print(printMessage);
 
-        String temp = sc.nextLine();
-        sc.close();
-        return temp;
+        return sc.nextLine();
     }
 }
