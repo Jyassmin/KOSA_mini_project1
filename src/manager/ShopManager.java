@@ -125,15 +125,6 @@ public class ShopManager{
         Scanner sc = new Scanner(System.in);
         // 사용자 메뉴
         do {
-            // Display main menu
-                /*
-                    1. 전체 제품 보기
-                    2. 상세 검색
-                    3. 주문 확인
-                    4. 정보 수정
-                    5. 탈퇴
-                    0. 프로그램 종료
-                */
             menu.displayShoppingMenu(currentCustomer.getIsSuperUser());
             input = sc.nextInt();
 
