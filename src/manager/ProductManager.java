@@ -11,8 +11,8 @@ import util.StringUtils;
     model.Product class의 관련된 기능들을 구현한 클래스
 */
 public class ProductManager {
-	//private static final String PRODUCT_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\data\\product.csv";
-	private static final String PRODUCT_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/product.csv";
+	private static final String PRODUCT_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\data\\product.csv";
+	//private static final String PRODUCT_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/product.csv";
 	private static ArrayList<Product> products;
 	private static HashMap<Integer, Product> productsHash;
 	private final String BAR_TABLE = "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
