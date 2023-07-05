@@ -18,13 +18,11 @@ public class ProductManager {
 	private final String BAR_TABLE = "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
 
 	/*
-		 product.csv 파일에서 읽어드린 데이터로 products와 productHash에 채워준다
+		 product.csv 파일의 데이터 읽어들여 products와 productHash에 채워준다.
 	*/
 	ProductManager() throws IOException {} {
-		Scanner sc = new Scanner(System.in);
 		products = new ArrayList<Product>();
 		productsHash = new HashMap<Integer, Product>();
-		sc = new Scanner(System.in);
 
 		File file = new File(PRODUCT_CSV_PATH);
 		if(file.exists()) {
@@ -33,7 +31,7 @@ public class ProductManager {
 		    while( (sLine = inFile.readLine()) != null ) {
 				String[] temp_arr = sLine.split(","); 
 		        try{
-					int tempId = Integer.parseInt(temp_arr[0].replaceAll("\\D", ""));
+					int tempId = Integer.parseInt(temp_arr[0].replaceAll("\\D", "")); // csv-utf8을 읽을 시 첫 문장은 다음과 같이 처리해야 int로 형변환 가능
 		        	addToList(new Product(
 		        			tempId,
 		        			temp_arr[1].trim(),
@@ -52,14 +50,14 @@ public class ProductManager {
     }
 
 	/*
-		넘겨받은 product id로 해당 product의 name을 return해준다
+		넘겨받은 product id로 해당 product의 name을 return해준다(모든 제품을 출력하는 show메소드에서 사용)
 	 */
 	public String getProductName(int id){
 		return productsHash.get(id).getName();
 	}
 
 	/*
-	 	model.Product ArrayList와 hashmap에 넘겨받은 model.Product 객체 저장하는 메소드
+	 	ArrayList와 hashmap에 model.Product 객체를 저장하는 메소드.(csv 읽어들이기와 등록에서 사용)
 	*/
 	private void addToList(Product p) {
 		products.add(p);
@@ -68,38 +66,31 @@ public class ProductManager {
 
 	/*
 		제품명, 브랜드, 사이즈, 색상, 재고 그리고 가격 정보를 input으로 받고
-	 	새로운 model.Product 객체를 생성 후 데이터에 넣어준다
+	 	새로운 model.Product 객체를 생성 후 데이터에 넣어준다.(사이즈, 재고, 가격은 숫자로 받기에 문자열을 입력할 시 재입력하도록 처리)
 	 */
 	public void add() throws IOException{ // 한 줄씩 등록
-		Scanner sc = new Scanner(System.in);
+		String name = StringUtils.printAndGetInput("제품명: ");
 
-		System.out.print("제품명: ");
-		String name = sc.nextLine();
-		
-		System.out.print("브랜드: ");
-		String brand = sc.nextLine();
+		String brand = StringUtils.printAndGetInput("브랜드: ");
 
 		String size_str;
 		do{
-			System.out.print("사이즈: ");
-			size_str = sc.nextLine();
+			size_str = StringUtils.printAndGetInput("사이즈: ");
 		} while (!StringUtils.containsOnlyNumbers(size_str));
 		int size = Integer.parseInt(size_str);
 
-		System.out.print("색상: ");
-		String color = sc.nextLine(); //br.readLine());
+
+		String color = StringUtils.printAndGetInput("색상: ");
 
 		String stock_str;
 		do{
-			System.out.print("재고: ");
-			stock_str = sc.nextLine();
+			stock_str = StringUtils.printAndGetInput("재고: ");
 		} while (!StringUtils.containsOnlyNumbers(stock_str));
 		int stock = Integer.parseInt(stock_str);
 
 		String cost_str;
 		do{
-			System.out.print("가격: ");
-			cost_str = sc.nextLine();
+			cost_str = StringUtils.printAndGetInput("가격: ");
 		} while (!StringUtils.containsOnlyNumbers(cost_str));
 		long cost = Long.parseLong(cost_str);
 		
@@ -110,7 +101,7 @@ public class ProductManager {
 	}
 
 	/*
-		현재 모든 data 출력
+		현재 ArrayList에 저장된 모든 상품을 출력.
 	 */
 	public void show() {
 		System.out.println(BAR_TABLE);
@@ -126,15 +117,12 @@ public class ProductManager {
 
 	/*
 		수정할 제품의 id를 입력받고 해당 제품의 수정될 내용들을 입력받은 뒤,
-		새로운 정보들로 데이터를 업데이트해준다
+		새로운 정보들로 데이터를 업데이트해준다.(현재 제품정보를 보여주며, 수정 시 실수를 방지)
 	 */
-	public void edit() { // 수정
-		Scanner sc = new Scanner(System.in);
-
+	public void edit() {
 		String id_str;
 		do{
-			System.out.print("수정할 제품의 ID를 입력해주세요: ");
-			id_str = sc.nextLine();
+			id_str = StringUtils.printAndGetInput("수정할 제품의 ID를 입력해주세요: ");
 		} while (!StringUtils.containsOnlyNumbers(id_str));
 		int id = Integer.parseInt(id_str);
 
@@ -152,34 +140,27 @@ public class ProductManager {
 		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 
 		System.out.println("* 아래에 수정될 내용을 적어주세요");
-		System.out.print("제품명: ");
-		String name = sc.nextLine();
-		
-		System.out.print("브랜드: ");
-		String brand = sc.nextLine();
+		String name = StringUtils.printAndGetInput("제품명: ");
 
+		String brand = StringUtils.printAndGetInput("브랜드: ");
 
 		String size_str;
 		do{
-			System.out.print("사이즈: ");
-			size_str = sc.nextLine();
+			size_str = StringUtils.printAndGetInput("사이즈: ");
 		} while (!StringUtils.containsOnlyNumbers(size_str));
 		int size = Integer.parseInt(size_str);
-		
-		System.out.print("색상: ");
-		String color = sc.nextLine();
+
+		String color = StringUtils.printAndGetInput("색상: ");
 
 		String stock_str;
 		do{
-			System.out.print("재고: ");
-			stock_str = sc.nextLine();
+			stock_str = StringUtils.printAndGetInput("재고: ");
 		} while (!StringUtils.containsOnlyNumbers(stock_str));
 		int stock = Integer.parseInt(stock_str);
 
 		String cost_str;
 		do{
-			System.out.print("가격: ");
-			cost_str = sc.nextLine();
+			cost_str = StringUtils.printAndGetInput("가격: ");
 		} while (!StringUtils.containsOnlyNumbers(cost_str));
 		int cost = Integer.parseInt(cost_str);
 		
@@ -219,18 +200,17 @@ public class ProductManager {
 		} 
 	}
 
+	/*
+		삭제할 제품의 id를 입력받아 ArrayList와 HashMap에서 해당 제품을 삭제한다.
+	*/
 	public void remove() {
-		Scanner sc = new Scanner(System.in);
-
 		String id_str;
 		do{
-			System.out.print("삭제할 제품의 ID를 입력해주세요: ");
-			id_str = sc.nextLine();
+			id_str = StringUtils.printAndGetInput("삭제할 제품의 ID를 입력해주세요: ");
 		} while (!StringUtils.containsOnlyNumbers(id_str));
 		int id = Integer.parseInt(id_str);
-		
-		System.out.print("정말 삭제하시겠습니까? 맞다면 y, 아니라면 n를 입력해주세요");
-		String input = sc.nextLine();
+
+		String input = StringUtils.printAndGetInput("정말 삭제하시겠습니까? 맞다면 y, 아니라면 n를 입력해주세요");
 
 		if (input.equals("y")) { // String 비교에서는 equals!
 			Product p = productsHash.get(id);
@@ -239,13 +219,13 @@ public class ProductManager {
 		}
 	}
 
+	/*
+    	제품의 id를 입력받아, 해당 제품의 정보만 출력한다.(상세검색-제품번호)
+	*/
 	public void showProductById() {
-		Scanner sc = new Scanner(System.in);
-
 		String id_str;
 		do{
-			System.out.print("검색할 제품의 번호를 입력해주세요: ");
-			id_str = sc.nextLine();
+			id_str = StringUtils.printAndGetInput("검색할 제품의 번호를 입력해주세요: ");
 		} while (!StringUtils.containsOnlyNumbers(id_str));
 		int id = Integer.parseInt(id_str);
 
@@ -263,11 +243,11 @@ public class ProductManager {
 		System.out.println(BAR_TABLE);
 	}
 
+	/*
+		검색할 브랜드명을 입력받아, 해당 브랜드 제품들의 정보를 출력한다.
+	*/
 	public void showBrand() {
-		Scanner sc = new Scanner(System.in);
-
-		System.out.print("검색할 브랜드명을 입력해주세요: ");
-		String brand = sc.nextLine();
+		String brand = StringUtils.printAndGetInput("검색할 브랜드명을 입력해주세요: ");
 
 		System.out.println(BAR_TABLE);
 		System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s\n",
@@ -286,10 +266,11 @@ public class ProductManager {
 		System.out.println(BAR_TABLE);
 	}
 
+	/*
+		제품명을 입력받아, 해당 제품의 제품정보를 출력한다.
+	*/
 	public void showProductName() {
-		Scanner sc = new Scanner(System.in);
-		System.out.print("검색할 제품명을 입력해주세요: ");
-		String name = sc.nextLine();
+		String name = StringUtils.printAndGetInput("검색할 제품명을 입력해주세요: ");
 
 		System.out.println(BAR_TABLE);
 		System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s\n",
@@ -308,13 +289,15 @@ public class ProductManager {
 		System.out.println(BAR_TABLE);
 	}
 
+	/*
+		제품 구매기능.
+    	제품의 번호를 입력받아 구매하고, 현재 제품을 구매하는 고객의 order에 구매제품의 정보를 저장한다.
+    	이를 위해 현재 고객의 Uid와 주문정보를 저장을 위해 index값을 받아온다.(index+1 위치에 주문정보 저장)
+	*/
 	public Order orderProduct(int lastOrderId, int currentUid) {
-		Scanner sc = new Scanner(System.in);
-
-		String id_str="";
+		String id_str;
 		do{
-			System.out.print("구매할 제품의 번호를 입력해주세요: ");
-			id_str = sc.nextLine();
+			id_str = StringUtils.printAndGetInput("구매할 제품의 번호를 입력해주세요: ");
 		} while (!StringUtils.containsOnlyNumbers(id_str));
 		int id = Integer.parseInt(id_str);
 
@@ -325,8 +308,7 @@ public class ProductManager {
 		} else {
 			String quantity_str;
 			do{
-				System.out.print("수량을 입력해주세요: ");
-				quantity_str = sc.nextLine();
+				quantity_str = StringUtils.printAndGetInput("수량을 입력해주세요: ");
 			} while (!StringUtils.containsOnlyNumbers(quantity_str));
 			int quantity = Integer.parseInt(quantity_str);
 
@@ -357,8 +339,3 @@ public class ProductManager {
 		return null;
 	}
 }
-
-
-
-
-
