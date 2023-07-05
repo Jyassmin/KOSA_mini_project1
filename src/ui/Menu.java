@@ -2,14 +2,15 @@ package ui;
 
 public class Menu {
     private final String str_bar;
-    public Menu(){
+
+    public Menu() {
         str_bar = "─────────────────────────";
     }
 
     /*
         로그인 & 회원가입 메뉴 display
      */
-    public void loginOrRegisterMenu(){
+    public void loginOrRegisterMenu() {
         System.out.println(str_bar);
         System.out.println("[Login or Register]");
         System.out.println("1. 로그인");
@@ -21,7 +22,7 @@ public class Menu {
     /*
        Manager role의 메인 메뉴 display
     */
-    public void displayMainMenu(){
+    public void displayMainMenu() {
         System.out.println(str_bar);
         System.out.println("[MANAGER MENU]");
         System.out.println("1. 쇼핑몰");
@@ -35,7 +36,7 @@ public class Menu {
     /*
        model.Customer role의 메인 메뉴 display
     */
-    public void displayShoppingMenu(boolean isSupper){
+    public void displayShoppingMenu(boolean isSupper) {
         System.out.println(str_bar);
         System.out.println("[SHOPPING MENU]");
         System.out.println("1. 전체 제품");
@@ -50,7 +51,7 @@ public class Menu {
         System.out.println(str_bar);
     }
 
-    public void displaySearchMenu(boolean isSupper){
+    public void displaySearchMenu(boolean isSupper) {
         System.out.println(str_bar);
         if (isSupper)
             System.out.println("[MANAGER MENU] > [1. SHOPPING MENU] > [2. SEARCH MENU]");
@@ -66,7 +67,7 @@ public class Menu {
     /*
        customer 관리 메뉴 display
     */
-    public void displayCustomerMenu(){
+    public void displayCustomerMenu() {
         System.out.println(str_bar);
         System.out.println("[MANAGER MENU] > [2. CUSTOMER MENU]");
         System.out.println("1. 등록");
@@ -79,7 +80,7 @@ public class Menu {
     /*
        product 관리 메뉴 display
     */
-    public void displayProductMenu(){
+    public void displayProductMenu() {
         System.out.println(str_bar);
         System.out.println("[MANAGER MENU] > [3. PRODUCT MENU]");
         System.out.println("1. 등록");
@@ -93,7 +94,7 @@ public class Menu {
     /*
        order 관리 메뉴 display
     */
-    public void displayOrderMenu(){
+    public void displayOrderMenu() {
         System.out.println(str_bar);
         System.out.println("[MANAGER MENU] > [4. ORDER MENU]");
         System.out.println("1. 모든 주문 보기");

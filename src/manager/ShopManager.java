@@ -2,13 +2,14 @@ package manager;
 
 import model.*;
 import ui.Menu;
+
 import java.io.IOException;
 import java.util.Scanner;
 
 /*
     쇼핑몰 전체를 관리해주는 class
  */
-public class ShopManager{
+public class ShopManager {
     private final Menu menu;
     private final CustomerManager customerManager;
     private final ProductManager productManager;
@@ -36,25 +37,24 @@ public class ShopManager{
     */
     void startProgram() throws IOException {
         int runProgram = 0;
-        do{
+        do {
             currentCustomer = null;
             runProgram = loginOrRegister();
 
             // display appropriate menu depends on user role: manager or customer
-            if(currentCustomer != null && currentCustomer.getIsSuperUser()){
+            if (currentCustomer != null && currentCustomer.getIsSuperUser()) {
                 runProgram = displayManagerMenu();
-            } else if(runProgram != 0){
+            } else if (runProgram != 0) {
                 runProgram = displayShoppingMenu();
             }
-        } while(runProgram != 0);
+        } while (runProgram != 0);
     }
 
     /*
        로그인 혹은 회원가입 메뉴를 display하고 사용자로부터 입력을 받은 다음 사용자 입력에 따라 다른 유형의 동작을 수행
     */
-    private int loginOrRegister(){
-        do
-        {
+    private int loginOrRegister() {
+        do {
             Scanner scc = new Scanner(System.in);
             menu.loginOrRegisterMenu();
 
@@ -74,7 +74,7 @@ public class ShopManager{
                     return 0;
                 }
             }
-        }while(currentCustomer == null);
+        } while (currentCustomer == null);
 
         return 1;
     }
@@ -103,8 +103,7 @@ public class ShopManager{
                 case 1 -> {
                     int val = displayShoppingMenu();
                     // val이 5란 의미는 회원이 탈퇴했다는 뜻
-                    if(val == 5)
-                    {
+                    if (val == 5) {
                         return val;
                     }
                 }
@@ -120,7 +119,7 @@ public class ShopManager{
     /*
        적절한 model.Customer 메뉴를 display하고 사용자로부터 입력을 받은 다음 사용자 입력에 따라 다른 유형의 동작을 수행
    */
-    private int displayShoppingMenu(){
+    private int displayShoppingMenu() {
         int input;
         Scanner sc = new Scanner(System.in);
         // 사용자 메뉴
@@ -149,7 +148,7 @@ public class ShopManager{
     }
     // endregion
 
-    private void saveDataToFile(){
+    private void saveDataToFile() {
         // saving data to files
         customerManager.saveToFile();
         productManager.saveToFile();
@@ -285,8 +284,7 @@ public class ShopManager{
                 Order o = productManager.orderProduct(orderManager.getLastOrderID(), currentCustomer.getId());
                 if (o != null)
                     orderManager.addToList(o);
-            }
-            else if (input != 0)
+            } else if (input != 0)
                 System.out.println("잘못된 입력입니다.");
 
         } while (input != 0);

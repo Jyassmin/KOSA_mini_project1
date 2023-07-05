@@ -13,8 +13,8 @@ import java.util.HashMap;
 */
 public class OrderManager {
 
-    private static final String ORDER_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\data\\order.csv";
-    //private static final String ORDER_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/order.csv";
+    //private static final String ORDER_CSV_PATH = "C:\\Users\\user\\Desktop\\데일리_과제\\프로젝트\\KOSA_mini_project1\\data\\order.csv";
+    private static final String ORDER_CSV_PATH = "/Users/kyle/work/KOSA_mini_project1/data/order.csv";
     private static ArrayList<Order> orders;
     private static HashMap<Integer, ArrayList<Order>> orderHash;
     private final String BAR_TABLE = "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
@@ -22,8 +22,7 @@ public class OrderManager {
     /*
         order.csv 파일에서 읽어드린 데이터로 orders와 orderHash에 채워준다
      */
-    OrderManager() throws IOException
-    {
+    OrderManager() throws IOException {
         orders = new ArrayList<Order>();
         orderHash = new HashMap<Integer, ArrayList<Order>>();
 
@@ -58,7 +57,7 @@ public class OrderManager {
 
         // adding to orders hashmap
         ArrayList<Order> orderList = orderHash.get(o.getUid());
-        if(orderList == null){
+        if (orderList == null) {
             orderList = new ArrayList<Order>();
             orderList.add(o);
             orderHash.put(o.getUid(), orderList);
@@ -70,18 +69,18 @@ public class OrderManager {
     /*
         모든 model.Order 보여주는 메소드
      */
-    public void showAll(CustomerManager cm, ProductManager pm){
+    public void showAll(CustomerManager cm, ProductManager pm) {
         show(orders, cm, pm);
     }
 
     /*
         고객 한명의 Order를 보여주는 메소드
      */
-    public void showOrderByManager(CustomerManager cm, ProductManager pm){
+    public void showOrderByManager(CustomerManager cm, ProductManager pm) {
         String tempId = "";
-        do{
+        do {
             tempId = StringUtils.printAndGetInput("고객의 ID를 입력해주세요: ");
-        }while(!StringUtils.containsOnlyNumbers(tempId));
+        } while (!StringUtils.containsOnlyNumbers(tempId));
         int cid = Integer.parseInt(tempId);
         ArrayList<Order> customerOrders = orderHash.get(cid);
 
@@ -91,7 +90,7 @@ public class OrderManager {
     /*
         넘겨받은 model.Order List안에 있는 model.Order 출력
      */
-    public void showOrderByCustomer(CustomerManager cm, ProductManager pm, Customer cc){
+    public void showOrderByCustomer(CustomerManager cm, ProductManager pm, Customer cc) {
         int cid = cc.getId();
         ArrayList<Order> customerOrders = orderHash.get(cid);
         if (customerOrders != null)
@@ -100,7 +99,7 @@ public class OrderManager {
             System.out.println("* 주문 내역이 존재하지 않습니다.");
     }
 
-    
+
     /*
         ArrayList<Order>, CustomerManager, ProductManager 타입의 variable들을 넘겨받으며 넘겨받은 os variable에 들어있는 
         정보들을 출력한다. 각 order의 uid(user id)와 pid(product id), cm(CustomerManager)와 pm(Product Manager)를 이용해
@@ -109,15 +108,15 @@ public class OrderManager {
     public void show(ArrayList<Order> os, CustomerManager cm, ProductManager pm) {
         System.out.println((BAR_TABLE));
         System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s %-20s\n",
-				"id", "customer ID", "customer name", "product ID", "product name", "order date", "total amount", "quantity");
+                "id", "customer ID", "customer name", "product ID", "product name", "order date", "total amount", "quantity");
         System.out.println((BAR_TABLE));
-        if(os != null)
+        if (os != null)
             for (Order e : os) {
-			System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s %-20s\n",
-					e.getId(), e.getUid(), cm.getCustomerName(e.getUid()), e.getPid(), pm.getProductName(e.getPid()),
+                System.out.printf("| %-5s|  %-20s %-20s %-20s %-20s %-20s %-20s %-20s\n",
+                        e.getId(), e.getUid(), cm.getCustomerName(e.getUid()), e.getPid(), pm.getProductName(e.getPid()),
                         e.getOrderDate(), e.getTotalAmount(), e.getQuantity());
             }
-		System.out.println(BAR_TABLE);
+        System.out.println(BAR_TABLE);
     }
 
     /*
@@ -132,7 +131,7 @@ public class OrderManager {
             }
             writer = new BufferedWriter(new FileWriter(ORDER_CSV_PATH, false));
 
-            for(Order item : orders) {
+            for (Order item : orders) {
                 String str;
                 str = item.getId() + "," +
                         item.getUid() + "," +
@@ -153,8 +152,8 @@ public class OrderManager {
         가지고 있는 Order들 중에 마지막 아이템의 Id return해주는 메소드
      */
     public int getLastOrderID() {
-        if(orders.size() > 0)
-            return orders.get(orders.size()-1).getId();
+        if (orders.size() > 0)
+            return orders.get(orders.size() - 1).getId();
         else
             return 0;
     }

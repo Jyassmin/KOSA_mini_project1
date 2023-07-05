@@ -29,39 +29,53 @@ public class Order {
     // endregion
 
     // region getters
-    public int getId(){
+    public int getId() {
         return this.id;
     }
-    public int getUid(){
+
+    public int getUid() {
         return this.uid;
     }
-    public int getPid(){
+
+    public int getPid() {
         return this.pid;
     }
-    public String getOrderDate(){
+
+    public String getOrderDate() {
         return this.orderDate;
     }
-    public double getTotalAmount(){
+
+    public double getTotalAmount() {
         return this.totalAmount;
     }
-    public int getQuantity(){
+
+    public int getQuantity() {
         return this.quantity;
     }
     //endregion
 
     // region setters
-    public void setId(int id){ this.id = id; }
-    public void setUid(int uid){ this.uid = uid; }
-    public void setPid(int pid){
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public void setPid(int pid) {
         this.pid = pid;
     }
-    public void setOrderDate(String orderDate){
+
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
-    public void setTotalAmount(double totalAmount){
+
+    public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
     }
-    public void setQuantity(int quantity){
+
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
     //endregion

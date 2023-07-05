@@ -14,7 +14,7 @@ public class StringUtils {
      */
     public static boolean containsOnlyNumbers(String input) {
         Pattern pattern = Pattern.compile("^[0-9]+$");
-        if(!pattern.matcher(input).matches()){
+        if (!pattern.matcher(input).matches()) {
             System.out.println("* 잘못된 입력입니다. 숫자를 정확히 입력해주세요.");
             return false;
         }
@@ -24,7 +24,7 @@ public class StringUtils {
     /*
         넘겨받은 string을 console에 print하고 입력 받은 값을 리턴해주는 메소드
      */
-    public static String printAndGetInput(String printMessage){
+    public static String printAndGetInput(String printMessage) {
         Scanner sc = new Scanner(System.in);
         System.out.print(printMessage);
 
